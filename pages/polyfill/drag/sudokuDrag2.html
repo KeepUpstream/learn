@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script language="javascript" type="text/javascript" src="../../js/others/mootools/mootools-1.2.1-all.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/test2.css"/>
+		<title>九宫格拖拽--基于mootools实现</title>
+	<style>
+		* {
+		    margin: 0;
+		    padding: 0;
+		}
+		ul {
+		    list-style: none;
+		}
+		.container{
+			position: relative;
+		    margin: 30px auto;
+		    padding: 10px;
+		    width: 320px;
+		    height: 320px;
+		    border: 1px solid #ccc;
+		    overflow: hidden;
+		}
+		.container li{
+		    position: absolute;
+		    width: 100px;
+		    color: #fff;
+		    font-size: 36px;
+		    text-align: center;
+		    line-height: 100px;
+		    background: #42a59f;
+		}
+		.container .active {
+		    z-index: 1;
+		}
+	</style>
+	</head>
+	<body>
+		<ul id="box" class="container">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+		</ul>
+	
+	
+	<script type="text/javascript">
+	function ifInRect(coord_s, coord_t) {
+        var ret = false;
+        var x = coord_s.left + coord_s.width / 2;
+        var y = coord_s.top + coord_s.height / 2;
+        if (x > coord_t.left && x < coord_t.left + coord_t.width) {
+            if (y > coord_t.top && y < coord_t.top + coord_t.height) {
+            	console.log("now:(x,y) "+x+","+y+";(t-left,t-right) "+ coord_t.left+","+ (coord_t.left + coord_t.width));
+                ret = true;
+            }
+        }
+        return ret;
+    }
+	var box = document.getElementById('box'), li = document.getElementsByTagName('li');
+    $$(li).each(function(drag) {
+    	//初始化布局
+        for(var i = 0;i < li.length; i++){
+            var iRow = Math.floor(i / 3), iCol = i % 3;
+            li[i].style.left = iCol * 100 + 10 * iCol + 10 + 'px';
+            li[i].style.top = iRow * 100 + 10 * iRow + 10 + 'px';
+            li[i].index = i;
+        }
+    	
+        var ob_dragmove = new Drag.Move(drag,{
+            droppables: $$('.container'),
+            onDrag:function(){
+            	var columns = $$('.container');
+            	var break_loop = false;
+            	for (var i = 0; i < columns.length; i++) {
+                	var item = columns[i];
+                	if (ifInRect(this.element.getCoordinates(), item.getCoordinates())) {
+                    	//发生交换
+                    	for (var j = 0; j < li.length; j++) {
+                        	if(li[j].index !== this.element.index){//发生位置交换的条件
+                                if(
+                                    this.element.getCoordinates().left + this.element.getCoordinates().width> li[j].getCoordinates().left + li[j].getCoordinates().width / 2
+                                    && this.element.getCoordinates().top + this.element.getCoordinates().height > li[j].getCoordinates().top + li[j].getCoordinates().height / 2
+                                    && this.element.getCoordinates().left <= li[j].getCoordinates().left + li[j].getCoordinates().width / 2
+                                    && this.element.getCoordinates().top <= li[j].getCoordinates().top + li[j].getCoordinates().height / 2
+                                ){
+                                    var iRow = Math.floor(this.element.index / 3), iCol = this.element.index % 3;
+                                    li[j].setStyle("left",iCol * 100 + 10 * iCol + 10 + 'px');
+                                    li[j].setStyle("top",iRow * 100 + 10 * iRow + 10 + 'px');
+                                    
+                                    //交换索引
+                                    var temp = li[j].index;
+                                    li[j].index = this.element.index; 
+                                    this.element.index = temp;
+                                }
+                            }
+                    	}
+                	}
+            	}
+            },
+            onComplete:function(){
+            	console.log("the index: "+this.element.index);
+            	var iRow = Math.floor(ob_dragmove.element.index / 3), iCol = ob_dragmove.element.index % 3;
+            	ob_dragmove.element.setStyle('left', iCol * 100 + 10 * iCol +10 + 'px');
+           	 	ob_dragmove.element.setStyle('top',iRow * 100 + 10 * iRow +10+ 'px');
+            }
+        });
+    });
+	
+	</script>		
+	</body>
+</html>

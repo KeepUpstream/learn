@@ -1,0 +1,17 @@
+.left, .center {
+    float: left;
+}
+.left {
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+.center {
+    background: yellow;
+    width: 700px;
+    height: 300px;
+}
+.right {
+    background-color: blue;
+    height: 200px;
+}

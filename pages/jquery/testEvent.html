@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>event</title>
+	<!--理论篇-->
+	<!--jQuery 是为事件处理特别设计的。
+		页面对不同访问者的响应叫做事件。
+		事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。
+		-->
+	
+	<!--常见 DOM 事件：
+		鼠标事件		键盘事件		表单事件	文档/窗口事件
+		click		keypress	submit	load
+		dblclick	keydown		change	resize
+		mouseenter	keyup		focus	scroll
+		mouseleave	 			blur	unload
+		hover	 	 	 -->
+	<!--特效使用方法.action()
+		.hide()	.show()	.toggle()
+		.fadeIn()	.fadeOut()	.fadeToggle()	.fadeTo()
+		.slideDown().slideUp()	.slideToggle()
+		.animate({params},speed,callback)	.stop(stopAll,goToEnd)
+		callback function链
+	-->	
+	
+	<!--eg：-->
+	<!--$("p").click(function(){
+			$(this).hide();
+		});
+		
+		$("#p1").mouseenter(function(){
+		    alert('您的鼠标移到了 id="p1" 的元素上!');
+		});
+		
+		$("#p1").hover(
+		    function(){
+		        alert("你进入了 p1!");
+		    },
+		    function(){
+		        alert("拜拜! 现在你离开了 p1!");
+		    }
+		);
+		
+		$("input").focus(function(){
+		    $(this).css("background-color","#cccccc");
+		});
+		
+		$("input").blur(function(){
+		    $(this).css("background-color","#ffffff");
+		});
+	-->
+	
+</head>
+<body>
+</body>
+</html>

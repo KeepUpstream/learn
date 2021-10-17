@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 解决移动端1px被渲染成2px的问题 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>主页面</h1>
+    <iframe src="./test02.html" name="innerIframe"></iframe>
+    <script>
+        window.onload = function(){
+            console.log("test01 onload.");
+            var inframe = window.frames["innerIframe"];
+            var iframe = document.getElementsByName("innerIframe")[0];
+            debugger
+        }
+    </script>
+</body>
+</html>

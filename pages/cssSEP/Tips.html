@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小知识点学习</title>
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script>
+			function $chk (obj){
+				return !!(obj || obj===0);
+			}
+		</script>
+	</head>
+	<body>
+		<p><b>1. 关于！和！！的区别及用法</b></p>
+		<script>
+			document.write("!null = "+ !null);
+			document.write("<br/>!undefined = "+ !undefined);
+			document.write("<br/>!'' = "+ !'');
+			document.write("<br/>!' ' = "+ !' ');
+			document.write("<br/>!100 = "+ !100);
+			document.write("<br/>!'abc' =" + !'abc');
+			document.write("<br/><b>!可将变量转换成boolean类型; !!常用来做类型判断</b>");
+			
+			var a='520';
+			document.write("<br/>定义变量var a=520;")
+			if(a!=null && typeof(a)!=undefined && a!=''){
+				document.write("<br/>经过判断a!=null && typeof(a)!=undefined && a!=''后输出a:"+a+",");
+			}
+			if(!!a){
+				document.write("<br/>经过判断!!a后输出a="+ a+".");
+			}
+		</script>
+		<p><b>2. 关于==和===的区别及用法</b></p>
+		<script>
+			document.write("==代表值相等与否；如果两个比较参数类型不一致，可经过类型转换之后再比较，如果经过类型转换之后的值相等，也返回true");
+			document.write("<br/>===代表严格意义上的相等；先比较两个参数的类型，如果不同直接返回false；类型相同之后再比较参数的值，也相同之后，返回true")
+		</script>
+		<p><b>3. 关于!!和===的混合使用</b></p>
+		<script>
+			document.write("<br/>$chk(null) = "+ $chk(null));
+		</script>
+	</body>
+</html>

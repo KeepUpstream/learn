@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>常用表单</title>
+	<link rel="stylesheet" href="myform.css"/>
+</head>
+<body>
+	<form class="dzj-box" action="form_action.asp" method="get">
+	  	<fieldset>
+			<legend><span class="formEdit"></span></legend>
+			Name: <input type="text" size="30"><br>
+			E-mail: <input type="email" size="30"><br>
+			Date of birth: <input type="date" size="10"><br>
+			
+			Select: <select  class="item-content" id="group" value="1">
+			    <option value="1">Dimond</option>
+			    <option value="2">vertical</option>
+			</select>
+			<span class="arrow"></span><br>
+					
+			<input type="checkbox" name="vehicle[]" value="Bike"> I have a bike
+  			<input type="checkbox" name="vehicle[]" value="Car" checked="checked"> I have a car<br>
+  
+			<input type="radio" name="sex" id="M" value="Male"><label for="M">Male</label>
+  			<input type="radio" name="sex" id="F" value="Female" checked="checked"><label for="F">Female</label> <br>
+  			
+  			<label class="radio">
+	            <input class="radio__input" type="radio" name="identify" value="1" data-is-valid="true">
+	            <span class="radio__icon"></span>
+	            <span class="radio__text">离线鉴定</span>
+	        </label>
+			<label class="radio">
+	            <input class="radio__input" type="radio" name="identify" value="2" data-is-valid="true">
+	            <span class="radio__icon"></span>
+	            <span class="radio__text">在线鉴定</span>
+	        </label>
+			<br>        
+  			<textarea rows="10" cols="30"></textarea>
+  				
+			<input type="submit" value="提交">
+		</fieldset>
+	</form>
+</body>
+</html>

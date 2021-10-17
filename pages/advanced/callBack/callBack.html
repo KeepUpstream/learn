@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>回到函数</title>
+	<script src="./aboutCallback.js"></script>
+</head>
+<body>
+	<h1>何为callback？</h1>
+	<h3 style="color: cornflowerblue;">A callback is a function that is passed as an argument to another function and is executed after its parent function has completed. The special thing about a callback is that functions that appear after the "parent" can execute before the callback executes. Another important thing to know is how to properly pass the callback. This is where I have often forgotten the proper syntax.</h3>
+	<h2>关于函数传参</h2>
+	<h4>只写变量名  say   返回的将会是 say方法本身，以字符串的形式表现出来。</h4>
+	<h4>而在变量名后加()如say()返回的就会使say方法调用后的结果，这里是弹出value的值。</h4>
+	<h2>回调传参的两种方式</h2>
+	<h4>1.将回调函数的参数作为与回调函数同等级的参数进行传递</h4>
+	<h4>2.回调函数的参数在调用回调函数内部创建</h4>
+	<h2>回调函数的调用时机</h2>
+	<h4>回调函数，一般在同步情境下是最后执行的，而在异步情境下有可能不执行，因为事件没有被触发或者条件不满足。</h4>
+	<h2>回调函数的使用场合</h2>
+	<h4>资源加载：动态加载js文件后执行回调，加载iframe后执行回调，ajax操作回调，图片加载完成执行回调，AJAX等等。</h4>
+	<h4>DOM事件及Node.js事件基于回调机制(Node.js回调可能会出现多层回调嵌套的问题)。</h4>
+	<h4>setTimeout的延迟时间为0，这个hack经常被用到，settimeout调用的函数其实就是一个callback的体现</h4>
+	<h4>链式调用：链式调用的时候，在赋值器(setter)方法中(或者本身没有返回值的方法中)很容易实现链式调用，而取值器(getter)相对来说不好实现链式调用，因为你需要取值器返回你需要的数据而不是this指针，如果要实现链式方法，可以用回调函数来实现setTimeout、setInterval的函数调用得到其返回值。由于两个函数都是异步的，即：他们的调用时序和程序的主流程是相对独立的，所以没有办法在主体里面等待它们的返回值，它们被打开的时候程序也不会停下来等待，否则也就失去了setTimeout及setInterval的意义了，所以用return已经没有意义，只能使用callback。callback的意义在于将timer执行的结果通知给代理函数进行及时处理。</h4>
+	
+	
+<script>
+
+
+
+</script>	
+</body>
+</html>

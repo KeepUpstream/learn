@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>变量作用域</title>
+</head>
+<body>
+	<form>
+		简历：<input type="file" />
+		<input type="button" value="提交" onClick="bclick(this)"/>
+	</form>
+	<ul>
+		<li>let:只作用于块级作用域；不能进行变量提升，存在暂时性死区；不能重复定义</li>
+		<li>const：</li>
+	</ul>
+<script>
+	var aNum = 10;
+	var log = console.log;
+	function bclick(e){
+		log(e);
+		var i=3;
+		log(aNum);
+		log(i);
+		//试在console修改aNum,i的值---look右侧Scope内的值即为函数作用域的变量
+		debugger
+		log(aNum);
+		log(i);
+	}
+	//使用var和不使用var定义的全局变量的configurable值不一样
+	var x=10;y=100;
+	var pd = Object.getOwnPropertyDescriptor;
+	log(pd(window,'x'));
+	log(pd(window,'y'));
+	delete x;log(x)
+	delete y;//log(y) //Uncaught ReferenceError: y is not defined
+	
+	var a=1;b=2;
+	let c=10;
+	change();
+	function change(){
+		log(a);
+		var aa=12;
+		a=aa;
+		log(a);
+		log(pd(window,'b'))
+		c=30;
+		log(pd(window,'c'))
+		log(d)
+		var d=5;
+		//log(e) //let不存在变量提升，所以它存在暂时性死区
+		let e=55;
+	}
+	log(c);
+	//log(d)
+	
+	for (var i = 0; i <10; i++) {  
+	  setTimeout(function() {  // 同步注册回调函数到 异步的 宏任务队列。
+	    console.log(i);        // 执行此代码时，同步代码for循环已经执行完成
+	  }, 0);
+	}
+		
+	for (let i = 0; i <10; i++) {  
+	  setTimeout(function() {  // 同步注册回调函数到 异步的 宏任务队列。
+	    console.log(i);        // 执行此代码时，同步代码for循环已经执行完成
+	  }, 0);
+	}
+	
+	const num = 2,obj = {a:1};
+	log(pd(window,'num'),pd(window,'obj'))//const定义变量并不在window上
+	//试对num obj重新复制、重复定义
+	obj.a='a';obj.b='b';
+	log(obj);
+	function changeConst(obj){
+		obj.a='aaaa';
+		obj.c='c';
+	}
+	changeConst(obj);
+</script>
+</body>
+</html>

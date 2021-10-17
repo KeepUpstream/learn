@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>背景图片叠加</title>
+  <style>
+  	html,body {
+		    width: 100%;
+		    height: 100%;
+		    margin:0;padding:0;
+		}
+    body{
+			background:url(../img/cloud.png) no-repeat,url(../img/cloud_bgcolor.png) repeat-x; 
+		    background-size: 100% 288px,100% 100%;
+		    background-position: 0 30%,100% 100%;
+		    font-family:'微软雅黑';
+		}
+		.box{
+				width: 50%;
+				height: 40%;
+				background: linear-gradient(45deg, #48d7f7, transparent);
+				position: absolute;
+				margin: auto;
+				inset: 0;
+				text-align: center;
+		}
+		.box::first-line {
+		    color: red;
+		}
+		.box label{
+			height: 30px;
+    line-height: 30px;
+		}
+		.box input[type='text'],input[type='password']{
+				display: inline-block;
+		    width: 250px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-indent: 10px;
+		    border: crimson;
+		    border-radius: 5px;
+		    margin: 10px 0;
+		}
+		label:nth-of-type(2) {
+		    text-indent: 16px;
+		    display: inline-block;
+		}
+  </style>
+</head>
+<body>
+  	<div class='box'>
+				<label for="name">用户名：</label>
+				<input id="name" type="text"/><br />
+				<label for="name">密码：</label>
+  			<input type="password"/>
+  	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.grid{
+	    height: 300px;
+	    width: 300px;
+	    background:#58a;
+	    background-image:linear-gradient(white 1px,transparent 0),
+	    		  	    linear-gradient(90deg, white 1px,transparent 0),
+	    		  	    linear-gradient(hsla(0,0%,100%,.3) 1px,transparent 0),
+	    		  	    linear-gradient(90deg,hsla(0,0%,100%,.3) 1px,transparent 0);
+	    background-size:15px 15px;
+}
+
+.grid2{
+	background: #db6cf7;
+    height: 300px;
+    width: 300px;
+    background-image: radial-gradient(#000d, #0000 55%, #111 77%), repeating-linear-gradient(#aaffaa 0, transparent 1px 40px, #aaffaa 41px), repeating-linear-gradient(to left, #afa3 0, transparent 1px 40px, #afa 41px);
+}
+

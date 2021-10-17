@@ -1,0 +1,299 @@
+#sc2,
+#sc3,
+#sc4,
+#sc5,
+#sc6,
+#sc9,
+#sc11,
+#sc12 {
+    opacity: 0;
+}
+
+#sc1 {
+    animation: hide 3s ease-in 1 alternate forwards;
+    animation-delay: 5s;
+}
+
+#sc2 {
+    animation: show 3s ease-in 1 alternate forwards;
+    animation-delay: 5s;
+}
+
+#sc3 {
+    animation: hide 5s ease-in 1 alternate forwards;
+    animation-delay: 14s;
+}
+
+#sc4 {
+    animation: hide 50s ease-in 1 alternate forwards;
+    animation-delay: 14s;
+}
+
+#sc5 {
+    animation: hide 4s ease-in 1 alternate forwards;
+    animation-delay: 16s;
+}
+
+
+/* #sc6 {
+    animation: hide 3s ease-in 1 alternate forwards;
+    animation-delay: 18s;
+} */
+
+
+/* #sc7 {
+    animation: show 3s ease-in 1 alternate forwards;
+    animation-delay: 20s;
+} */
+
+
+/* #sc8 {
+    animation: hide 5s ease-in 1 alternate forwards;
+    animation-delay: 22s;
+} */
+
+#sc9 {
+    animation: hide 4s ease-in 1 alternate forwards;
+    animation-delay: 20s;
+}
+
+
+/* #sc10 {
+    animation: hide 4s ease-in 1 alternate forwards;
+    animation-delay: 26s;
+} */
+
+#sc11 {
+    animation: hide 4s ease-in 1 alternate forwards;
+    animation-delay: 25s;
+}
+
+#sc12 {
+    animation: show 3s ease-in 1 alternate forwards;
+    animation-delay: 30s;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.div-duck {
+    width: 50vw;
+    height: 34vh;
+    position: absolute;
+    top: 15vh;
+    left: 0vw;
+    border: none;
+}
+
+.div-textCB {
+    width: 50vw;
+    height: 34vh;
+    position: absolute;
+    top: 15vh;
+    right: 13vw;
+    border: none;
+}
+
+.div-textNum {
+    width: 100vw;
+    height: 50vh;
+    position: absolute;
+    top: 31vh;
+    left: 0;
+    border: none;
+}
+
+.div-newyear,
+.div-wennuan,
+.div-tianman,
+.div-fengguan,
+.div-pingan {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+.div-tree {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+.div-fire {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+}
+
+.part1 {
+    display: block;
+    width: 60vw;
+    height: 30vh;
+    position: absolute;
+    top: -7vh;
+    left: 31vw;
+    color: yellow;
+    font-size: 3em;
+}
+
+.part2 {
+    display: block;
+    width: 41vw;
+    height: 15vh;
+    position: absolute;
+    top: 80vh;
+    left: 59vw;
+    border: none;
+}
+
+.part3 {
+    display: block;
+    width: 80vw;
+    height: 20vh;
+    color: orange;
+    position: absolute;
+    bottom: 25vh;
+    left: 10vw;
+    font-size: 3em;
+}
+
+.text-top1,
+.text-top2 {
+    background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
+    -webkit-text-fill-color: transparent;
+    /* 将字体设置成透明色 */
+    -webkit-background-clip: text;
+    /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+    -webkit-background-size: 200% 100%;
+    font-size: 1em;
+}
+
+.text-top1 {
+    position: relative;
+    -webkit-animation: masked-animation 1s ease-out 1 alternate forwards;
+    animation: masked-animation 1s ease-out 1 alternate forwards;
+}
+
+.text-top2 {
+    position: relative;
+    -webkit-animation: masked-animation2 2s linear 1 alternate forwards;
+    animation: masked-animation2 2s ease-in 1 alternate forwards;
+}
+
+.text-top3 {
+    position: relative;
+    -webkit-animation: masked-animation3 4s linear 1 alternate forwards;
+    animation: masked-animation3 4s ease-in 1 alternate forwards;
+}
+
+@keyframes masked-animation {
+    0% {
+        left: -100vw;
+        top: 10vh;
+        background-position: 0 0;
+    }
+    100% {
+        left: 5vw;
+        top: 10vh;
+        background-position: -100% 0;
+    }
+}
+
+@keyframes masked-animation2 {
+    0% {
+        left: -100vw;
+        top: 10vh;
+        background-position: 0 0;
+    }
+    100% {
+        left: 5vw;
+        top: 10vh;
+        background-position: -100% 0;
+    }
+}
+
+@keyframes masked-animation3 {
+    0% {
+        right: 200vw;
+        top: 10vh;
+    }
+    100% {
+        left: 5vw;
+        top: 10vh;
+    }
+}
+
+.text-bottom1 {
+    position: relative;
+    font-family: 'cursive';
+    font-size: 2em;
+    transform: rotate(17deg);
+    color: #edf10c;
+    -webkit-animation: bottom-animation 1s ease-out 1 alternate forwards;
+    animation: bottom-animation 1s ease-out 1 alternate forwards;
+    animation-delay: 4s;
+    opacity: 0;
+}
+
+.text-bottom2 {
+    position: relative;
+    font-family: 'cursive';
+    font-size: 1em;
+    transform: rotate(5deg);
+    -webkit-animation: bottom-animation2 1s ease-out 1 alternate forwards;
+    animation: bottom-animation2 1s ease-out 1 alternate forwards;
+    animation-delay: 5s;
+    opacity: 0;
+}
+
+@keyframes bottom-animation {
+    0% {
+        display: none;
+        left: 5vw;
+        top: -100vh;
+    }
+    100% {
+        display: block;
+        left: 5vw;
+        top: 1vh;
+        opacity: 1;
+    }
+}
+
+@keyframes bottom-animation2 {
+    0% {
+        display: none;
+        left: 5vw;
+        top: 200vh;
+    }
+    100% {
+        display: block;
+        left: 5vw;
+        top: 1vh;
+        opacity: 1;
+    }
+}

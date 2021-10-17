@@ -1,0 +1,28 @@
+{
+	"manifest_version":2,
+	"name":"获取萌宠",
+	"version":"1.0",
+	
+	"description":"try to learn what is firefox extension.",
+	"homepage_url":"https:www.baidu.com",
+	"icons":{
+		"96":"icons/fox.jpg"
+	},
+	
+	"permissions":[
+		"activeTab"
+	],
+	
+	"browser_action":{
+		"default_icon":"icons/fox2.jpg",
+		"default_title":"萌宠按钮",
+		"default_popup":"popup/choose_beast.html"
+	},
+	
+	"web_accessible_resources":[
+		"beasts/dragon.jpg",
+		"beasts/google.jpg",
+		"beasts/lion.jpg",
+		"beasts/tiger.jpg"
+	]
+}

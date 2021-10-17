@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+</head>
+<body>
+	<!--给一个dom元素添加事件有以下几种方式：
+		1. 直接在元素标签内添加onClick="testClick()"
+				this指向
+		2. 在js中获取dom对象obj，通过obj.onClick=function(){}添加；
+				this指向
+							清除：btn.onclick = null;
+			如果想将函数作为参数传递，并要给函数传递参数，可以：
+				obj.onClick=function(){
+					func(param,param2,param3,...);
+				}
+		3. 在js中获取dom对象obj，通过obj.addEventListener('click',funcName,capture);
+                  			    移除removeEventListener(event,function);
+                  			    注意:通过匿名函数绑定的事件无法移除
+                	IE浏览器11只支持addEventListener
+            		IE浏览器8~11两者都支持
+            		IE浏览器8版本以下绑定事件:绑定:attachEvent();解绑 detachEvent();    
+	-->
+</body>
+<div id="container">
+	<p>
+		<span onclick="sayHello()"></span>
+	</p>
+	<div>
+        <p id="parEle">我是父元素 <span id="sonEle">我是子元素</span></p>
+    </div>
+</div>
+<script type="text/javascript"> 
+    var sonEle = document.getElementById('sonEle'); 
+    var parEle = document.getElementById('parEle'); 
+    parEle.addEventListener('click', function () { alert('父级 冒泡'); }, false); 
+    parEle.addEventListener('click', function () { alert('父级 捕获'); }, true); 
+    sonEle.addEventListener('click', function () { alert('子级冒泡1'); }, false); 
+    sonEle.addEventListener('click', function () { alert('子级捕获'); }, true);
+    sonEle.addEventListener('click', function () { alert('子级冒泡2'); }, false);
+</script>
+</html>

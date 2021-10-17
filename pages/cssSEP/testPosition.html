@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/test/position.css" />
+	<script src="../js/jquery.min.js"></script>
+	<title>元素定位</title>
+	<!--理论：
+		元素可以使用的top,bottom,left,right属性定位。然而，这些属性无法工作，除非是先设定position属性。
+		position:static;是默认值，即没有定位，遵行正常的文档流对象，不会受top,bottom,left,right的影响；
+		position:relative;相对定位元素的定位是相对其正常位置。移动相对定位元素，但它原本所占的空间不会改变。
+		position:absolute;绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>
+		position:fixed;	元素的位置相对于浏览器窗口是固定位置,即使窗口是滚动的他也不会动。
+			注意：  Fixed 定位在 IE7 和 IE8 下需要描述 !DOCTYPE 才能支持。
+				 Fixed定位使元素的位置与文档流无关，因此不占据空间。
+				 Fixed定位的元素和其他元素重叠。
+		position:sticky;粘性定位，基于用户的滚动位置来定位。粘性定位的元素是依赖于用户的滚动，在 position:relative 与 position:fixed 定位之间切换。
+				它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。
+				元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。
+				这个特定阈值指的是 top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
+	-->
+</head>
+<body>
+	<h2>position: static;</h2>
+	<p>使用 position: static; 定位的元素，无特殊定位，遵循正常的文档流对象:</p>
+	<div class="static">该元素使用了 position: static;</div>
+
+	<h2>position:fixed</h2>
+	<p class="pos_fixed">这个元素是固定定位</p>
+	<p><b>注意:</b> IE7 和 IE8 支持只有一个 !DOCTYPE 指定固定值.</p>
+
+	
+	<h2>position:relative</h2>
+	<p>相对定位会按照元素的原始位置对该元素进行移动。</p>
+	<h2 class="pos_left">这个标题相对于其正常位置向左移动</h2>
+	<h2 class="pos_right">这个标题相对于其正常位置向右移动</h2>
+
+	<h2>postion:absolute</h2>
+	<p class="pos_absolute">这个元素是绝对定位</p>
+	<p>用绝对定位,一个元素可以放在页面上的任何位置。标题下面放置距离左边的页面100 px和距离页面的顶部150 px的元素。.</p>
+	
+	<h2>position:sticky</h2>
+	<p>注意: IE/Edge 15 及更早 IE 版本不支持 sticky 属性。</p>
+	<div class="sticky">我是粘性定位!</div>
+	<div style="padding-bottom:200px">
+	  <p>滚动我</p>
+	  <p>来回滚动我</p>
+	  <p>滚动我</p>
+	  <p>来回滚动我</p>
+	  <p>滚动我</p>
+	  <p>来回滚动我</p>
+	</div>
+
+	<h2>position:relative+absolute</h2>
+	<div class="parentDiv">
+		<div class="childDiv">这，就是我的学堂。</div>
+	</div>
+
+<script>
+$(window).scroll(function(){
+	var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+	$(".childDiv").css('left',scrollLeft);
+})
+	
+</script>
+</body>
+</html>

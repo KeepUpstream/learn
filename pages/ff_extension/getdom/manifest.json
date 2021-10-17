@@ -1,0 +1,47 @@
+{
+
+  "manifest_version": 2,
+  "name": "访问dom",
+  "version": "1.0",
+
+  "description": "This is demo about how to develop an add-ons",
+  "icons":{
+  	"48":"icons/icon.png"
+  },
+
+// 内容脚本
+//   matches:模式匹配,<scheme>://<host><path> 
+//  		<scheme> -- *（http|https）或 http https file ftp app 
+//  		host	--- * *.mozilla.org www.baidu.com(即通配符只能在开头显示)
+// 		path    --- /（必须以此开头，中间 末尾均可包含*）
+// 		<all_urls>--特殊值“<all_urls>”匹配任何受支持方案下的所有URL：即, "http", "https", "file", "ftp", "app"。
+//  js:匹配页面内注入的内容脚本
+  "content_scripts": [
+      {
+        "all_frames":true,
+        "matches": ["http://*.baidu.com/*"],
+        "js": ["about_baidu.js","content_scripts.js"]
+      }
+  ],
+
+  //申请权限：弹出通知，跨域等
+  "permissions": ["notifications"],
+
+  "browser_action": {
+      "browser_style": true,
+      "default_icon": {
+          "16": "icons/geo-32.jpg",
+          "32": "icons/geo-32-light.jpg"
+      },
+      "default_popup": "popup/choose_page.html",
+      "default_title": "Where am i?"
+  },
+ 
+  "web_accessible_resources": ["js/operate.js"],
+  
+  //引用后台脚本
+  "background": {
+      "scripts": ["page/tab-create.js"]
+  }
+
+}

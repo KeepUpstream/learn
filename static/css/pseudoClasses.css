@@ -1,0 +1,23 @@
+p:first-child{
+	color: greenyellow;
+}
+h1:first-of-type {
+    color: red;
+}
+
+.user{
+	font-size: 16px;
+}
+.margin{
+	margin-bottom: 10px;
+}
+.item{
+	width: 200px;
+	border: solid 1px cadetblue;
+}
+.box{
+	border: solid 2px blueviolet;
+}
+.item.box{
+	border: solid 2px darkred;
+}

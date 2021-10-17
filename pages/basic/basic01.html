@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript输出</title>
+</head>
+<body>
+	<script>
+		window.alert("今年是2019年，我"+(5 + 6));
+		window.alert("弹出一个对象就是[object object]");
+		document.write("加油 \n 小辉辉");
+	</script>
+	
+	<p id="demo">我的第一个段落</p>
+	<script>
+		document.getElementById("demo").innerHTML = "段落已修改。";
+		console.log(document.getElementById("demo"));
+	</script>
+	
+	<button onclick="myFunction()">点我显示时间</button>
+	<script>
+	function myFunction() {
+	    document.write(Date());
+	}
+	</script>
+
+	<button onclick="winTest()">按钮</button>
+	
+<script>
+function winTest()
+{
+    var txt1 = "This is a new window.";
+    var txt2 = "This is a test.";
+    //document.open("text/html","replace");//加上
+    document.writeln(txt1);
+    document.write(txt2);
+    //document.close();//加上
+}
+</script>
+</body>
+</html>

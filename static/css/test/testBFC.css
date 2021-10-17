@@ -1,0 +1,38 @@
+body{
+	width:600px;
+	position: relative;
+}
+.left{
+	width: 100px;
+	height: 100px;
+	background: darkred;
+	float:left;
+}
+.right{
+	height: 300px;
+	background: green;
+	/*overflow: hidden;*/
+}
+
+.box{
+	width:300px;
+	border: solid 2px brown;
+	/*overflow: hidden;*/
+	/*display: flow-root;*/
+}
+.child{
+	width:100px;
+	height:100px;
+	border:solid 1px green;
+	float:left;
+}
+
+p{
+	background-color:green;
+}
+.para1{
+	margin:20px 0;
+}
+.para2{
+	margin:30px 0;
+}

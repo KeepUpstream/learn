@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript事件</title>
+</head>
+<body>
+	
+	<!--1. onload浏览器已完成页面的加载-->
+	<script>
+		window.onload(alert(new Date()));
+	</script>
+	
+	<!--2. onclick 用户点击HTML元素-->
+	<p id="want">初听不知曲中意，再听已是曲中人。曲中思念今犹在，不见当年梦中人。</p>
+	<button onclick="c()">魔法变身</button>
+	
+	<!--3. onchange HTML元素改变-->
+	<p id="test" onchange="alert(this)">原来的文字</p>
+
+	<!--4. onmouseover 用户在一个HTML元素上移动鼠标-->
+	
+	<!--5. onmouseout  用户从一个HTML元素上移开鼠标-->
+	
+	<!--6. onkeydown 用户按下键盘按键-->
+	 
+<script>
+	function c(){
+		document.getElementById("want").innerHTML="两情若是久长时，又岂在朝朝暮暮。";
+	}
+	
+	var test = document.getElementById("test");
+	test.onclick = print(this);
+	function print(value){
+		console.log(value);
+	}
+</script>	 
+</body>
+</html>

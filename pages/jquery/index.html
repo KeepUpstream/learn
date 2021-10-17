@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<h1>1.简单介绍jQuery</h1>
+<!--jQuery 是一个 JavaScript 库。-->
+
+<!--jQuery 的功能概括:-->
+1、html 的元素选取
+2、html 的元素操作
+3、html dom遍历和修改
+4、js特效和动画效果
+5、css操作
+6、html事件操作
+7、ajax异步请求方式
+
+<!--目前jQuery有三个大版本：-->
+1.x：兼容ie678,使用最为广泛的，官方只做BUG维护，功能不再新增。因此一般项目来说，使用1.x版本就可以了，最终版本：1.12.4 (2016年5月20日)
+2.x：不兼容ie678，很少有人使用，官方只做BUG维护，功能不再新增。如果不考虑兼容低版本的浏览器可以使用2.x，最终版本：2.2.4 (2016年5月20日)
+3.x：不兼容ie678，只支持最新的浏览器。除非特殊要求，一般不会使用3.x版本的，很多老的jQuery插件不支持这个版本。目前该版本是官方主要更新维护的版本。最新版本：3.2.1（2017年3月20日）	
+使用$.fn.jquery可以查看jQuery使用版本
+<!--jquery-xxx.js 与 jquery-xxx.min.js区别：-->
+jquery-xxx.js：开发版本(delelopment version)。给程序员看的，有良好的缩进和注释。体积大一些
+jquery-xxx.min.js：生产版本(production version)。程序中使用，没有缩进。体积小一些。程序加载更快
+
+<!--新浪 CDN-->
+<script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+<!--百度CDN-->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<h1>2.基本语法</h1>
+		$(selector).action()
+<!--美元符号定义 jQuery							   使用$
+	选择符（selector）"查询"和"查找" HTML 元素-------对谁
+	jQuery 的 action() 执行对元素的操作-------------做什么
+-->
+所以，接下来首先要学的就是selector选择器和action可选操作。
+
+$(document).ready(function(){
+   // 开始写 jQuery 代码...
+});
+简写为：$(function(){});
+
+<!--jQuery 入口函数与 JavaScript 入口函数的区别：-->
+	jQuery 的入口函数是在 html 所有标签(DOM)都加载之后，就会去执行。
+			可执行n次，第N次的执行不会被last那次所覆盖。
+	JavaScript 的 window.onload 事件是等到所有内容，包括外部图片之类的文件加载完后，才会执行。
+ 			只能执行1次，会覆盖。
+ 			
+<h1>3.$冲突</h1>
+<!--
+	其他一些 JavaScript 框架包括：MooTools、Backbone、Sammy、Cappuccino、Knockout、JavaScript MVC、Google Web Toolkit、Google Closure、Ember、Batman 以及 Ext JS。
+	其中某些框架也使用 $ 符号作为简写（就像 jQuery），如果您在用的两种不同的框架正在使用相同的简写符号，有可能导致脚本停止运行。
+-->
+<!--释放对$的控制
+	$.noConflict();
+	jQuery(document).ready(function(){
+	  jQuery("button").click(function(){
+	    jQuery("p").text("jQuery 仍然在工作!");
+	  });
+	});
+-->
+<!--创建自己的简写，noConflict() 可返回对 jQuery 的引用，您可以把它存入变量，以供稍后使用
+	var jq = $.noConflict();
+	jq(document).ready(function(){
+	  jq("button").click(function(){
+	    jq("p").text("jQuery 仍然在工作!");
+	  });
+	});
+-->
+
+<!--如果你的 jQuery 代码块使用 $ 简写，并且您不愿意改变这个快捷方式，那么您可以把 $ 符号作为变量传递给 ready 方法。
+	这样就可以在函数内使用 $ 符号了 ；
+	而在函数外，依旧不得不使用 "jQuery"
+	$.noConflict();
+	jQuery(document).ready(function($){
+	  $("button").click(function(){
+	    $("p").text("jQuery 仍然在工作!");
+	  });
+	});
+-->
+</body>
+</html>

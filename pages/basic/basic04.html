@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript函数及分支、循环语句</title>
+</head>
+<body>
+	<h2>函数传参</h2>
+	<p>变量和参数必须以一致的顺序出现。第一个变量就是第一个被传递的参数的给定的值，以此类推。</p>
+	<p>如果实参个数比形参少，那么剩下的默认赋值为 undefined；</p>
+	<p>如果实参传的比形参数量多，那么是全部都会被传进去的，只不过没有对应的形参可以引用（但可以用 arguments 来获取剩下的参数）。</p>
+	<script>
+		console.log("函数传参：实参 < 形参");
+		function test(arg1,arg2,arg3,arg4) {
+		    for(var i=0; i<arguments.length; i++) {
+		        console.log(arguments[i]);
+		    }
+		    console.log("agr4:"+arg4);		//undefined
+		}
+		test(1,2,3); //输出 1 2
+		
+		console.log("函数传参：实参 < 形参");
+		function test(arg1) {
+			console.log("agr1:"+arg1);		//剩下的可以通过arguments访问
+		    for(var i=1; i<arguments.length; i++) {
+		        console.log(arguments[i]);
+		    }
+		}
+		test(1,2,3,4,5); //输出 1 2
+	</script>
+
+</body>
+</html>

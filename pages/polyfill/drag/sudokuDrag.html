@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格拖拽--基于原生</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        #box {
+            position: relative;
+            margin: 30px auto;
+            padding: 10px;
+            width: 320px;
+            height: 320px;
+            border: 1px solid #ccc;
+        }
+        #box li {
+            position: absolute;
+            width: 100px;
+            color: #fff;
+            font-size: 36px;
+            text-align: center;
+            line-height: 100px;
+            background: blue;
+        }
+        #box .active {
+            z-index: 1;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBox = document.getElementById('box'), aLi = document.getElementsByTagName('li');
+            //初始化的布局
+            for(var i = 0;i < aLi.length; i++){
+                var iRow = Math.floor(i / 3), iCol = i % 3;
+                aLi[i].style.left = iCol * 100 + 10 * iCol + 10 + 'px';
+                aLi[i].style.top = iRow * 100 + 10 * iRow + 10 + 'px';
+ 
+                aLi[i].index = i;
+                //添加拖拽效果
+                aLi[i].onmousedown = function (ev) {
+                    var oThis = this, ev = ev || window.event,
+                    //鼠标相对于li的左侧/上侧的距离
+                    iX = ev.clientX - oThis.offsetLeft - oBox.offsetLeft,
+                    iY = ev.clientY - oThis.offsetTop - oBox.offsetTop;
+                    //被点中的元素具有active类名，层级高于其他
+                    oThis.className = 'active';
+                    //兼容TE
+                    if(oThis.setCapture){
+                        oThis.setCapture();
+                    }
+                    document.onmousemove = function (ev) {
+                        var ev = ev || window.event,
+                            //移动后li相对于盒子左侧上侧的距离
+                            iL = ev.clientX - iX - oBox.offsetLeft,
+                            iT = ev.clientY - iY - oBox.offsetTop;
+                    	oThis.style.left = iL + 'px';
+                    	oThis.style.top = iT + 'px';
+ 
+                        //发生交换
+                        for (var j = 0; j < aLi.length; j++) {
+                            if(aLi[j].index !== oThis.index){
+                                //发生位置交换的条件
+                                if(
+                                    oThis.offsetLeft + oThis.offsetWidth > aLi[j].offsetLeft + aLi[j].offsetWidth / 2
+                                    && oThis.offsetTop + oThis.offsetHeight > aLi[j].offsetTop + aLi[j].offsetHeight / 2
+                                    && oThis.offsetLeft <= aLi[j].offsetLeft + aLi[j].offsetWidth / 2
+                                    && oThis.offsetTop <= aLi[j].offsetTop + aLi[j].offsetHeight / 2
+                                ){
+                                    var iRow = Math.floor(oThis.index / 3), iCol = oThis.index % 3;
+                                    aLi[j].style.left = iCol * 100 + 10 * iCol + 10 + 'px';
+                                    aLi[j].style.top = iRow * 100 + 10 * iRow + 10 + 'px';
+ 
+                                    //交换索引
+                                    var iTemp = aLi[j].index;
+                                    aLi[j].index = oThis.index;
+                                    oThis.index = iTemp;
+                                }
+                            }
+                        }
+                    };
+                    document.onmouseup = function () {
+                        document.onmousemove = document.onmouseup = null;
+                        oThis.className = null;
+ 
+                        //兼容TE
+                        if(oThis.releaseCapture){
+                            oThis.releaseCapture();
+                        }
+                        //计算最后鼠标松开后LI的位置
+                        var iRow = Math.floor(oThis.index / 3), iCol = oThis.index % 3;
+                        oThis.style.left = iCol * 100 + 10 * iCol + 10 + 'px';
+                        oThis.style.top = iRow * 100 + 10 * iRow + 10 + 'px';
+                    };
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="box">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+</ul>
+</body>
+</html>

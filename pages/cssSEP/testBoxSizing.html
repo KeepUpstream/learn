@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>测试box-sizing</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			background: linear-gradient(to left,#ff0000,#00ff00);
+			height:200px;
+			width: 500px;
+			margin-left:25%;
+			padding:20px;
+			border: dashed 10px darkgray;
+			overflow: auto;
+		}
+		.content{
+			border:solid 2px darkcyan;
+			margin:10px;
+			padding:5px 8px;
+			color: darkmagenta;
+			width:200px;
+			height: 200px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div id="item" class="content">这是内容区域</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "description": "Demonstrating webRequests",
+  "manifest_version": 2,
+  "name": "webRequest-demo",
+  "version": "1.0",
+
+  "icons":{
+    "48":"icons/dog-JapaneseSpitz.jpg"
+  },
+  
+  "permissions": [
+    "webRequest",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

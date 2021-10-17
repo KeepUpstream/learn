@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript比较与逻辑|条件运算符</title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<p id="demo2"></p>
+		<p id="demo3"></p>
+		<p id="demo4"></p>
+		<p id="demo5"></p>
+		<p id="demo6"></p>
+		<script>
+			//比较运算符
+			var x=5;
+			document.getElementById("demo").innerHTML=x==8;
+			document.getElementById("demo2").innerHTML=x==="5";
+			document.getElementById("demo3").innerHTML=x===5;
+			document.getElementById("demo4").innerHTML=x!=8;
+			document.getElementById("demo5").innerHTML=x!=="5";
+			document.getElementById("demo6").innerHTML=x!==5;
+			//逻辑运算符
+			var a = [1,2,3];
+			var b = "hello";
+			var obj = new Object();
+			var d;
+			console.log(!"");   //true
+			console.log(!d);    //true
+			console.log(!a);    //false
+			console.log(!b);    //false
+			console.log(!obj);  //false
+			//条件运算符
+			var p=6,b=8;
+			document.write(p>1?p<b?p>b:p=6:p=3);//找到头？和尾:
+		//关于==与===比较
+		var n1=65,n2=String.fromCharCode(65);//基本类型
+		if(n1==n2)document.write("n1==n2"+"<br>");
+		else document.write(typeof(n1)+","+typeof(n2)+"<br>");
+		if(n1===n2)document.write("n1===n2"+"<br>");
+		else document.write(typeof(n1)+","+typeof(n2)+"<br>");
+		var x=null,y=undefined;
+		if(x==y)document.write("x==y"+"<br>");
+		else document.write(typeof(x)+" "+typeof(y)+"<br>");//x为object，y为undefined
+		
+		var str1="cat",str2="CAT",str3="cat";
+		if(str1===str3) document.write(1);
+		else document.write(false);
+		</script>
+	</body>
+</html>

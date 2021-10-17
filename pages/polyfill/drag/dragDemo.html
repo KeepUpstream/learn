@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <script language="javascript" type="text/javascript" src="../../js/others/mootools/mootools-1.2.1-all.js"></script>
+        <style type="text/css">
+            .module {
+                background-color: #ff0000;
+                border: 1px dotted;
+                cursor: move;
+                position: relative;
+            }
+            #f1{
+                width: 50px;
+                height: 50px;
+                background-color: green;
+            }
+            #f2{
+            	width: 100px;
+                height: 100px;
+                background-color: darkviolet;
+            }
+            #f3{
+            	width: 150px;
+                height: 150px;
+                background-color: aquamarine;
+            }
+            #f4{
+            	width: 200px;
+                height: 200px;
+                background-color: coral;
+            }
+            #f5{
+            	width: 250px;
+                height: 250px;
+                background-color: cornflowerblue;
+            }
+            #f6{
+            	width: 300px;
+                height: 300px;
+                background-color: darkgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        		<div class="module" id="f1"></div>
+            	<div class="module" id="f2"></div>
+                <div class="module" id="f3"></div>
+                <div class="module" id="f4"></div>
+                <div class="module" id="f5"></div>
+                <div class="module" id="f6"></div>
+        </div>
+        <div id="blank" style="border:dotted 1px;display:none"></div>
+        <script>
+            function ifInRect(coord_s, coord_t) {
+                var ret = false;
+                var x = coord_s.left + coord_s.width / 2;
+                var y = coord_s.top + coord_s.height / 2;
+                if (x > coord_t.left && x < coord_t.left + coord_t.width) {
+                    if (y > coord_t.top && y < coord_t.top + coord_t.height) {
+                    	console.log("now:(x,y) "+x+","+y+";(t-left,t-right) "+ coord_t.left+","+ (coord_t.left + coord_t.width));
+                        ret = true;
+                    }
+                }
+                return ret;
+            }
+            $$('.module').each(function(drag,index) {
+                var ob_dragmove = new Drag.Move(drag,{
+                    droppables: $$('.container'),
+                    onBeforeStart:function(){
+                    	var left = this.element.getLeft();
+                    	var top = this.element.getTop();
+                    	console.log(index+":"+left+","+top);
+                    	$('blank').setStyle('display', 'block');
+                    	$('blank').inject(this.element,"before");
+                    	$('blank').setStyle('height', this.element.getStyle('height'));
+                    	this.element.setStyle('width', this.element.getStyle('width'));
+                    	this.element.setStyle('position', 'absolute');
+                    	this.element.setStyle('left', left);
+                    	this.element.setStyle('top', top);
+                    	
+                    },
+                    onDrag:function(){
+                    	var columns = $$('.container');
+                    	var break_loop = false;
+                    	for (var j = 0; j < columns.length; j++) {
+                        	var item = columns[j];
+                        	console.log("item:"+item.getCoordinates());
+                        	if (ifInRect(this.element.getCoordinates(), item.getCoordinates())) {
+                            	var modules = item.getElements('.module');
+                            	for (var i = 0; i < modules.length; i++) {
+                                	if (this.element.getCoordinates().top < modules[i].getCoordinates().top) {
+                                		debugger;console.log(ob_dragmove.element.getCoordinates().top +","+ modules[i].getCoordinates().top);
+                                   		$('blank').inject(modules[i],"before");
+                                    	break_loop = true;
+                                    	break;
+                                	}
+                            	}
+                            	$('blank').setStyle('width',ob_dragmove.element.getCoordinates().width);
+                            	if (!break_loop)
+                                $('blank').inject(item);
+                        	}
+                    	};
+                    },
+                    onComplete:function(){
+                    	ob_dragmove.element.inject($('blank'),"before");
+                    	ob_dragmove.element.setStyle('position', 'relative');
+                    	ob_dragmove.element.setStyle('left', '0');
+                   	 	ob_dragmove.element.setStyle('top', '0');
+                    	$('blank').setStyle('display', 'none');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

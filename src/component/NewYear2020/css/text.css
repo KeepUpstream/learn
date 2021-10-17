@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+.comeBrother .wrapper {
+  width: 50vw;
+    text-align: center;
+    position: absolute;
+    left: 25vw;
+    top: 20vh;
+	background: none;
+}
+.wrapper span {
+  -webkit-text-stroke-width: 1.25px;
+    -webkit-text-stroke-color: #1d1b1b;
+    font-size: 30px;
+    text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
+    transform: translate(30%, 20%) rotate(10deg);
+    animation: jump 2s ease-in-out infinite;
+    display: inline-block;
+    font-family: "Titan One", cursive;
+    color: #fff;
+}
+.wrapper span:nth-child(1) {
+  animation-delay: 120ms;
+}
+.wrapper span:nth-child(2) {
+  animation-delay: 240ms;
+}
+.wrapper span:nth-child(3) {
+  animation-delay: 360ms;
+}
+
+@keyframes jump {
+  13% {
+    text-shadow: 0 60px #f37121, 0 50px #f2aaaa;
+  }
+  20% {
+    transform: translate(0, 0) rotate(-4deg);
+    text-shadow: 0 0px #8fc0a9, 0 0px #84a9ac;
+  }
+  35% {
+    text-shadow: 0 -60px #d54062, 0 -50px #8fc0a9;
+  }
+}
+

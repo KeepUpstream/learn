@@ -1,0 +1,14 @@
+html,body{
+	margin:0;
+	padding:0;
+	height:100%;
+}
+.bkImg.boxContainer1{
+	background: url(../images/pictures/laborDay.jpeg) no-repeat;/*c u r a p*/
+    background-position: 60% 20%;
+    transition:background-image 3s cubic-bezier(.45,.04,.15,1.24);
+}
+.bkImg.boxContainer2{
+	background: url(../images/pictures/birds.jpeg) no-repeat;/*c u r a p*/
+    background-position: 60% 20%;
+}

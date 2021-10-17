@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            background-color: #ff0000;
+            position: absolute;
+            animation:mymove 4s 1;
+            -moz-animation:mymove 4s 1; /* Firefox */
+            -webkit-animation:mymove 4s 1; /* Safari and Chrome */
+            -o-animation:mymove 4s 1; /* Opera */
+
+            -webkit-animation-fill-mode: forwards ;
+            -animation-fill-mode: forwards ;
+        }
+        @keyframes mymove {
+            from {top: 0}
+            to {top: 100px}
+        }
+        @-webkit-keyframes mymove {
+            from {top: 0}
+            to {top: 100px}
+        }
+        
+        .paused{
+            -webkit-animation-play-state: paused!important;
+            -moz-animation-play-state: paused!important;;
+            -o-animation-play-state: paused!important;;
+            -animation-play-state: paused!important;;
+        }
+
+        .running{
+            -webkit-animation-play-state: running!important;;
+            -moz-animation-play-state: running!important;;
+            -o-animation-play-state: running!important;;
+            -animation-play-state: running!important;;
+        }
+        
+    </style>
+</head>
+<body>
+<div id="nice">nice</div>
+<script>
+    var nice = document.getElementById("nice");
+
+    var prefixs = ["","o","moz","webkit"],
+        div = document.createElement("div"),
+        computeStyle,
+        prefixAnimationPlayState;
+    //获取所支持的animationPlayState，IE6,7,8不支持CSS3,就不写currentStyle的兼容代码了
+    computeStyle = window.getComputedStyle(document.documentElement,"");
+    prefixs.forEach(function(key){
+        var prefix =  !key ? "animationPlayState" : key + "AnimationPlayState";
+        if(typeof computeStyle[prefix] == "string")
+            prefixAnimationPlayState = prefix;
+    })
+	
+	//通过js修改style样式控制动画停止、继续
+	setTimeout(function(){
+    	console.log(prefixAnimationPlayState);
+        nice.style[prefixAnimationPlayState] = "paused";
+        console.log("state change to paused.");
+    },1000);
+    setTimeout(function(){
+        nice.style[prefixAnimationPlayState] = "running";
+        console.log("state change to running.");
+    },2000);
+
+	//通过修改样式控制动画的暂停、继续
+//  vardiv = document.createElement("div");//通过修改class暂停
+//  setTimeout(function(){
+//      nice.className = "paused";
+//  },1000);
+//  setTimeout(function(){
+//      nice.className = "running";
+//  },2000);
+</script>
+</body>
+</html>

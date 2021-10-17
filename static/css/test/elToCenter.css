@@ -1,0 +1,22 @@
+.box,.box1{
+	width:400px;
+	height:400px;
+	border:solid 2px red;
+	text-align:center;
+}
+.item{
+	width:100px;
+	height:100px;
+	background-color: royalblue;
+	/*margin:0 auto;*/
+	display: inline-block;
+}
+.item2{
+	width:100px;
+	height:100px;
+	background-color: royalblue;
+	/*margin:0 auto;*/
+	display: inline-block;
+	position:relative;
+	top:150px;
+}

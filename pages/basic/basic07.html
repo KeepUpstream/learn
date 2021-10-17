@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript运算符</title>
+</head>
+<body>
+	<script>
+		var out = 5 + 10 + "这个结果";
+		document.writeln(out+"<br>");
+		var out2 = "   "+250;
+		document.writeln("250.length="+'250'.length+","+out2+",length="+out2.length+"<br>");
+		var out3 = null + 30;	//null转为0
+		document.writeln(out3+"<br>");
+		var one = true,zero = false,num=13;//true转为1，false转为0
+		document.writeln(one+zero+num+"<br>");
+		var a = undefined;
+		document.write(a+one+"<br>");//undefined 除了与字符串进行累加时有效（undefined 视为字符串"undefined"处理），其他情况皆返回 NaN
+		document.write(a+" "+"<br>");
+		var x = 7 % 3;
+		var y = 7 % (-3);
+		var z = (-7) % 3; //取模运算的结果符号只与左边值的符号有关
+		document.writeln(x+" "+y+" "+z+"<br>");
+		
+	</script>
+</body>
+</html>

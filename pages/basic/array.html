@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS Array</title>
+		<script type="text/javascript">
+			function employee(name,job,born)
+			{
+				this.name=name;
+				this.job=job;
+				this.born=born;
+			}
+			function sortNumber(a,b)
+			{
+				return a - b
+			}
+		</script>
+	</head>
+	<body>
+		<summary>Array 对象是用于构造数组的全局对象，数组是类似于列表的高阶对象
+			<details>
+				<p>数组是一种类列表对象，它的原型中提供了遍历和修改元素的相关操作。JavaScript 数组的长度和元素类型都是非固定的。因为数组的长度可随时改变，并且其数据在内存中也可以不连续，所以 JavaScript 数组不一定是密集型的，这取决于它的使用方式。一般来说，数组的这些特性会给使用带来方便，但如果这些特性不适用于你的特定使用场景的话，可以考虑使用<big><b>类型数组 Typed Array。</b></big></p>
+				<p>只能用整数作为数组元素的索引，而不能用字符串。后者称为<big><b>关联数组 Associative Array</b></big>。使用非整数并通过方括号或点号来访问或设置数组元素时，所操作的并不是数组列表中的元素，而是数组对象的属性集合上的变量。数组对象的属性和数组元素列表是分开存储的，并且数组的遍历和修改操作也不能作用于这些命名属性。</p>
+			</details>
+		</summary>
+		<h3>构造函数</h3>
+		<ol>
+			<li>new Array()</li>
+			<li>index访问</li>
+		</ol>
+		<h3>静态属性</h3>
+		<ol>
+			<li>get Array</li>
+		</ol>
+		<h3>静态方法</h3>
+		<ol>
+			<li>Array.from() 从类数组或可迭代对象创建一个新实例</li>
+			<li>Array.isArray()如果参数是数组，则返回true，否则返回false</li>
+			<li>Array.of()创建一个Array具有可变数量参数的新实例，无论参数的数量或类型如何</li>
+		</ol>
+		<h3>实例属性--挂载在Array.prototype的属性</h3>
+		<ol>
+			<li>Array.prototype.length反映数组中元素的数量。</li>
+			<li>Array.prototype包含要从with绑定范围中排除的属性名称的符号</li>
+		</ol>
+		<h3>实例方法--挂载在Array.prototype.上的方法</h3>
+		<ol>
+			<li>at() 返回给定索引处的数组项。接受负整数，从最后一项开始计数。</li>
+			<li>Array.prototype.concat(x1,arr,...,xn)返回一个新数组，该数组是此数组与其他数组和/或值连接的。</li>
+			<li>Array.prototype.copyWithin(target[,start,end])复制数组中start-end的数组元素序列覆盖target下标开始及之后的元素序列。若target&lt;start,[start,end]将被修剪以适应length</li>
+			<li>indexOf()返回数组中与元素相等的元素的第一个（最小）索引，或者-1如果没有找到</li>
+			<li>lastIndexOf()返回数组中与元素相等的元素的最后一个（最大）索引，或者-1如果没有找到。</li>
+			<li>find()如果数组中的某个元素满足测试函数，或者undefined未找到，则返回在数组中找到的</li>
+			<li>findIndex()如果数组中的元素满足测试函数，或者-1未找到，则返回数组中找到的索引。</li>
+			<li>分段访问 slice</li>
+			<li>堆栈操作 push|pop（数组末尾） shift|unshift（数组开始） </li>
+			<li>队列操作 push&unshift shift&pop</li>
+			<li>增删元素splice</li>
+			<li>forEach()遍历</li>
+			<li>some(conditionFunc) 返回布尔值，即使conditionFunc内含有return亦不生效。</li>
+			<li>every(conditionFunc)返回布尔值</li>
+			<li>keys()</li>
+			<li>map()</li>
+			<li>filter()</li>
+			<li>fill() 使用静态值填充数组从开始索引到结束索引的所有元素。</li>
+			<li>sort() 对数组进行原地排序</li>
+			<li>sort() 对数组进行原地反转</li>
+			<li>reduce()</li>
+			<li>reduceRight()</li>
+			<li>entries()</li>
+			<li>values()</li>
+			<li>join()</li>
+			<li>toString()</li>
+			<li>toLocalString()</li>
+		</ol>
+		<script>
+			var array  = new Array();
+			var array2 = new Array(6);
+			var array3 = new Array('July','Nino','Bob','Jane','David','Jiojio','Zambace');
+			
+			
+			document.write("<b>2. Array的属性</b><br/>");
+			/*告诉你constructor属性这么用*/
+			document.write("array3.constructor==Array? " + (array3.constructor==Array) + "<br/>");
+			var aihui = new employee("Ai Hui","Programmer",1996);
+			employee.prototype.salary=null;	//但是employee的构造方法中并不会添加salary这一属性
+			aihui.salary=20000;
+			document.write(aihui.constructor+ ","+aihui.salary+"<br/>");
+			var xiaosa=new employee("小萨","host",1990,3000);
+			document.write(xiaosa.constructor+"<br/>");
+			
+			document.write("<b>3. Array的方法</b><br/>");
+			document.write("array_num: "+array3.join()+"<br/>");
+			document.write("array_string: "+array3.toString()+"<br/><br/>");
+			//sort()方法在不使用参数时，是按照字符编码的顺序进行排序；
+			//若a<b,则a应排在b前边，返回一个<0的值；
+			//若a>b,则返回一个>0的值；
+			//若a=b,则返回0
+			document.write("array3.sort()："+ array3.sort()+"<br/>");
+			document.write("array3.sort(sortNumber)："+ array3.sort(sortNumber)+"<br/>");
+			document.write("array3.sort(): "+ array3.sort()+"<br/><br/>");
+			
+			document.write("array3.concat(array_num): "+array3.concat(array_num)+"<br/>");
+			document.write("array3.join(\"***\"): "+ array3.join("***") +"<br/>"); //注：dw在write字符串的时候注意转义字符
+			
+			var pop=array_num.pop();//删除并返回最后一个元素
+			document.write("array3.pop(): "+ pop +"<br/>");
+			array_num.push(103);//向尾部添加元素返回新长度
+			document.write("push之后："+ array3.join()+",需重新排序："+array3.sort(sortNumber)+"<br/>");
+			array_string.shift();//删除并返回第一个元素
+			document.write("shift之后: "+ array3.join()+"<br/>");
+			array_string.unshift('AaBu','LiLei');//向头部添加元素并返回新的长度
+			document.write("unshift之后: "+array3.toString()+"<br/><br/>")
+			
+			document.write("逆序："+array_num.reverse()+"<br/>");
+			
+			//slice和splice
+			document.write("返回最后两个元素："+array_num.slice(-2)+"<br/>");
+			document.write("返回下标2-4（不包括4）之间的元素："+ array_num.slice(2,4)+"<br/>");
+			
+			//slice为在first指定的位置删除second个元素并添加third等元素
+			array_string.splice(-1,0,"《---","---》");
+			document.write(array_string.join());
+			//			document.write(aihui.toSource());//不知道为什么不管用
+			
+		</script>
+	</body>
+</html>

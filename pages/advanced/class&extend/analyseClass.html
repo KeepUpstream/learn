@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="../../js/others/mootools/mootools-1.2.1-all.js"></script>
+		<title>类是如何实现的</title>
+	</head>
+	<body>
+		<!--实现类的步骤:
+			1.使用new Class新建类，初始化的固定函数是initialize，不能使用其它名称
+				子类也是使用new Class新建，父类在子类中，使用Extends:parentClass来继承，Extends与子类的方法名，同一级别
+			2.子类中与父类的同名方法，如果需要在父类的同名方法上拓展，需要在子类的同名方法内，使用this.parent(args)
+			3.如果需要在类的外面增加方法，可以使用implement方法
+		-->
+		<p>看控制台输出</p>
+		<script>
+			// 使用 Class.create 创建类
+		    var Person = new Class({
+		        // 初始函数固定为 initialize,
+		        initialize:function(name) {
+		            this.name = name;
+		            this.friends = ['jack', 'mark'];
+		        },
+		        getName: function(){
+		            console.log("My name is " + this.name);
+		        },
+		        setFriends:function(friend){
+		            this.friends.push(friend);
+		        },
+		        getFriends:function(){
+		            console.log(this.friends)
+		        }
+		    });
+
+		    // 使用 implement 给类添加方法，子类可以继承该方法
+		    Person.implement({
+		        getAge:function(age){
+		            console.log("My age is " + age);
+		        }
+		    })
+
+		    // 子类通过 new Class 创建类
+		    var Chinese = new Class({
+		        // 子类通过 Extends 来继承父类
+		        Extends:Person,
+		        initialize:function(name, addr){
+		            this.parent(name);
+		            this.addr = addr;
+		        },
+		        getAddr:function(){
+		            console.log("My address is " + this.addr);
+		        }
+		    });
+
+		    var Japanese = new Class({
+		        Extends:Person,
+		        initialize:function(name){
+		            this.parent(name);
+		        }
+		    })
+
+		    // 实例化类
+		    var men = new Chinese('阿伦', 'BeiJing');
+		    men.getName(); // My name is 阿伦
+		    men.getAge(23); // My age is 23
+		    men.getAddr(); // My address is BeiJing
+		
+		    // 以下验证 - 子类继承父类的属性，修改了之后，其他子类再次继承父类，父类的属性的值为何不会改变
+		    var allen = new Person();
+		    allen.getFriends(); // ["jack", "mark"]
+		
+		    var women = new Japanese();
+		    women.setFriends("lisa");
+		    women.getFriends(); // ["jack", "mark", "lisa"]
+		
+		    var men = new Chinese();
+		    men.setFriends('peter');
+		    men.getFriends(); //["jack", "mark", "peter"]
+		
+		    var wallen = new Person();
+		    wallen.getFriends(); //["jack", "mark"]
+			
+		</script>
+		
+		<!--JS是如何实现类的方法，有几个重要的问题需要搞清楚
+			1. JS是如何创建类的
+			2. 子类是如何实现继承父类属性和方法的
+			3. 子类继承父类的属性，修改了之后，其他子类再次继承父类，父类的属性的值为何不会改变
+			4. 子类和父类的同名函数，使用this.parent(args)在函数中使用，是如何做到在子类中的同名函数共存的
+			5. 如何实现，不在类中，而是使用implement往类中添加方法的
+		-->
+		
+		<script type="text/javascript">
+			
+		</script>
+		
+		
+	</body>
+</html>

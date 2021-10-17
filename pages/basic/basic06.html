@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript字符串</title>
+</head>
+<body>
+	<h1>1. 字符串是原始值，字符串也可以声明为对象</h1>
+	<p id="demo"></p>
+	<script>
+		var x='Happy "new" year.'		//字符串是原始值
+		var y=new String("May you a 'new' start.");	//字符串也可以声明为对象
+		var demo=document.getElementById("demo");
+		var out=""+x+y+"<br>";
+		var judge=x.length+","+y.length+","+typeof(x)+","+typeof(y);	//length返回字符串的长度
+		var n = out.concat(judge);
+		var isEqual="<br>"+"x===y成立",noEqual="<br>"+"x===y不成立";
+		if(x===y)n=n.concat(isEqual);
+		else n=n.concat(noEqual);
+		demo.innerHTML=n;
+	</script>
+	<h1>2. 字符串对象属性</h1>
+	<h4>原始值字符串，如 "John", 没有属性和方法(因为他们不是对象)。</h4>
+	<h4>原始值可以使用 JavaScript 的属性和方法，因为 JavaScript 在执行方法和属性时可以把原始值当作对象。</h4>
+	<p id="demo2"></p>
+	<script>
+		var name="peiqi";
+		var lastName="zhu";
+		var demo2=document.getElementById("demo2");
+		demo2.innerHTML=name.constructor;	//constructor返回创建字符串属性的函数
+	</script>
+	<p id="demo3"></p>
+	<script>
+		function employee(name,jobtitle,born){
+			this.name=name;
+			this.jobtitle=jobtitle;
+			this.born=born;
+		}
+		var fred=new employee("Fred Flintstone","Caveman",1970);
+		employee.prototype.salary=null;	//prototype允许您向对象添加属性和方法
+		fred.salary=20000;
+		document.getElementById("demo3").innerHTML=fred.salary;
+	</script>
+	<h1>3. 字符串对象方法</h1>
+	<script>
+		var x = "join me,I will return you a different time.";             
+		y = x.charAt(2); 					console.log(y);// 返回在指定位置的字符。
+		y = x.charCodeAt(5); 				console.log(y);// 返回在指定的位置的字符的 Unicode 编码。
+		y = x.concat(y, y); 				console.log(y);// 连接两个或更多字符串，并返回新的字符串。
+		y = String.fromCharCode(65,70,75,85);console.log(y);//将 Unicode 编码转为字符
+		y = x.indexOf('i'); 				console.log(y);// 返回某个指定的字符串值在字符串中首次出现的位置。
+		y = x.lastIndexOf('i'); 			console.log(y);// 从后向前搜索字符串，并从起始位置（0）开始计算返回字符串最后出现的位置。
+		x="The rain in SPAIN stays mainly in the plain";
+		y = x.match(/ain/g);    			console.log(y);//查找找到一个或多个正则表达式的匹配
+		y = x.repeat(2);					console.log(y);//复制字符串指定次数，并将它们连接在一起返回。
+		y = x.replace("SPAIN","spain");		console.log(y);//在字符串中查找匹配的子串， 并替换与正则表达式匹配的子串。
+		y = x.search("rain");     	console.log(y);//查找与正则表达式相匹配的值。
+		y = x.slice(4,10);			console.log(y);//提取字符串的片断，并在新的字符串中返回被提取的部分。
+		y = x.split(','); 			console.log(y);//把字符串分割为字符串数组。
+		y = x.startsWith("The",0);	console.log(y);//查看字符串是否以指定的子字符串开头
+		y = x.substr(-1,1); 		console.log(y);//从起始索引号提取字符串中指定数目的字符。 
+		y = x.substring(2,8); 		console.log(y);//提取字符串中两个指定的索引号之间的字符。 
+		y = x.toUpperCase(); 		console.log(y);//把字符串转换为大写 
+		y = x.toLowerCase();        console.log(y);//把字符串转换为小写
+		y = x.toLocaleUpperCase();  console.log(y);//根据本地主机的语言环境把字符串转换为大写
+		y = x.toLocaleLowerCase();  console.log(y);//根据本地主机的语言环境把字符串转换为小写
+		y = x.toString(); 			console.log(y);//返回一个字符串
+		y = x.trim(); 				console.log(y);//去除字符串两边的空白 
+		y = x.valueOf(); 			console.log(y);//返回某个字符串对象的原始值 
+	</script>
+	<h1>4. String HTML包装方法</h1>
+	<script>
+		var txt = "Hello World!";
+		document.write(txt.anchor("hello world."));
+		document.write("<p>字体变大: " + txt.big() + "</p>");
+		document.write("<p>字体缩小: " + txt.small() + "</p>");
+		document.write("<p>字体加粗: " + txt.bold() + "</p>");
+		document.write("<p>斜体: " + txt.italics() + "</p>");
+		document.write("<p>固定定位: " + txt.fixed() + "</p>");			//以打字机文本显示字符串
+		document.write("<p>加删除线: " + txt.strike() + "</p>");			//用于显示加删除线的字符串。
+		document.write("<p>字体颜色: " + txt.fontcolor("green") + "</p>");//使用指定的颜色来显示字符串
+		document.write("<p>字体大小: " + txt.fontsize(6) + "</p>");		//使用指定的尺寸来显示字符串
+		document.write("<p>下标: " + txt.sub() + "</p>");				//	把字符串显示为下标。
+		document.write("<p>上标: " + txt.sup() + "</p>");				//	把字符串显示为上标
+		document.write("<p>链接: " + txt.link("http://www.w3cschool.cc") + "</p>");//	将字符串显示为链接
+		document.write("<p>闪动文本: " + txt.blink() + " (不能用于IE,Chrome,或者Safari)</p>");//	显示闪动字符串.该方法返回加了 <blink> 标签的字符串目前只有 Firefox 和 Opera 浏览器支持 blink() 方法. Internet Explorer, Chrome, 以及 Safari 不支持 blink() 方法。
+	</script>
+</body>
+</html>

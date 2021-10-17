@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <title>脱离文档流</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        height: 800px;
+        border: 3px dotted #0000FF;
+    }
+	
+	.demo1{
+        width: 200px;
+        height: 200px;
+        border: 5px solid red;
+        float: left;
+        /*position: absolute;
+    	top: 194px;*/
+    }
+    .demo2{
+        width: 300px;
+        height: 100px;
+        border: 5px solid green;
+        background: green;
+    }
+
+    .fixedtop {
+        margin-top: 50px;
+    }
+
+    .fixedtop header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 50px;
+        overflow: hidden;
+        width: 100%;
+        background: blue;
+    }
+
+    .fixedbottom {
+        margin-bottom:50px;
+    }
+
+    .fixedbottom footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 50px;
+        overflow: hidden;
+        width: 100%;
+        background: blue;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="fixedtop">
+        <header></header>
+    </div>
+    <h1>脱离文档流</h1>
+    <p>1.float</p>
+    <p>2.position:absolute</p>
+    <strong>使得元素脱离普通流，元素在文档排版布局时会被忽略。结果是：此元素排在之前元素的后边，其后元素占据此元素位置。不管是float还是absolute都是脱离了文档流，没有脱离文本流（文字环绕），更没有脱离DOM层级结构（依旧可以用它来获取其他元素）</strong>
+    <p>3.position:fixed</p>
+    <hr />
+    
+    <div class="demo1">这是demo1的文本</div>
+    <div class="demo2">这是demo2的文本</div>
+    <hr />
+    <pre>
+        33
+            test
+    </pre>
+
+    <div class="fixedbottom">
+        <footer></footer>
+    </div>
+</body>
+
+</html>

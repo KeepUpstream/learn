@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>selector</title>
+	<link rel="stylesheet" href="../css/common.css" />
+	<!--理论篇-->
+	<!--jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。
+	jQuery 选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。-->
+	
+	<!--选取所有元素	$("*")-->
+	<!--选取当前html元素	$(this)-->
+	<!--元素选择器,选取的是标签	$("p") | $("button")-->
+	<!--id选择器	$("#id")-->
+	<!--class选择器	$(".class")-->
+	<!--伪类选择器	$(":button") | $("p:first") | $("tr:even") | $("tr:odd") | $(":empty")-->
+	<!--属性选择器	$("[href]")  | $("a[target!='_blank']")-->
+	
+	<!--eg:-->
+<!--$("#id", ".class")  复合选择器
+	$(div p span)       层级选择器 //div下的p元素中的span元素
+	$(div>p)            父子选择器 //div下的所有p元素
+	$(div+p)            相邻元素选择器 //div后面的p元素(仅一个p)
+	$(div~p)            兄弟选择器  //div后面的所有p元素(同级别)
+	$(.p:last)          类选择器 加 过滤选择器  第一个和最后一个（first 或者 last）
+	$("#mytable td:odd")层级选择 加 过滤选择器 奇偶（odd 或者 even）
+	$("div p:eq(2)")    索引选择器 div下的第三个p元素（索引是从0开始）
+	$("a[href='www.baidu.com']")  属性选择器
+	$("p:contains(text)")//内容过滤选择器，包含text内容的p元素
+	$(":empty")        //内容过滤选择器，所有空标签（不包含子标签和内容的标签）parent 相反
+	$(":hidden")       //所有隐藏元素 visible 
+	$("input:enabled") //选取所有启用的表单元素
+	$(":disabled")     //所有不可用的元素
+	$("input:checked") //获取所有选中的复选框单选按钮等
+	$("select option:selected") //获取选中的选项元素
+-->
+	
+</head>
+<body>
+<div class="container">
+	<div class="box">
+		<h2></h2>
+		<div class=""></div>
+		<div class=""></div>
+		<div class=""></div>
+	</div>
+</div>
+</body>
+</html>

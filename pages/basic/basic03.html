@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript数据类型、变量及作用域</title>
+<!--理论：
+1. 5大基本数据类型：String、Number、Boolean、undefined、null;
+	引用数据类型：Array、Boolean、Date、Math、String、RegExp、全局属性|函数
+	1.1 变量的命名规则
+		变量必须以字母开头，也可以用$和_开头（但是不推荐使用）
+		变量名称对大小写敏感
+		可以用驼峰法命名
+	1.2 变量的声明和赋值
+		在计算机程序中，经常会声明无值的变量。未使用值来声明的变量，其值实际上是 undefined。
+		如果仅重新声明 JavaScript 变量，该变量的值不会丢失，那是因为在执行时，若检查到变量名已存在，就不再声明该变量。
+2. 基本类型与引用类型
+	2.1 动态属性的赋值
+		var a=new Object();
+		a.name='Bob';
+	2.2 复制变量的值
+		基本类型的数据：复制该变量，声明一个新变量，复制出该值的副本，复制之后两个变量再无关系；
+		引用类型的数据：复制该变量的引用，相当于两个变量同时指向内容空间内的同一数据；
+	2.3 传递参数
+		function(arg1,arg2,...)但是：基本类型传参是按基本类型数据的复制将变量的值传递给参数，引用类型的值传参是将引用复制给参数进行传递的。
+	2.4 类型检测
+		typeof	注意：null和obj都为Object对象。
+		instanceof
+3. 执行环境与逆向作用域链
+	3.1 执行环境
+		全局环境:浏览器window，关闭浏览器当前页面或浏览器，脚本内的所有变量被销毁。
+		局部环境：function内
+		没有块级作用域
+	3.2 逆向作用域链
+		声明变量
+		检查标识符:当前环境 《 向上一级环境 《 。。。 直至找到该变量 或 回溯到window全局环境；
+4. 垃圾回收机制与内存管理
+	4.1 垃圾回收机制
+		js可以自动进行垃圾回收；
+		具体实现方法：
+			标记清除法
+			引用计数法
+	4.2 内存管理
+		当不再使用引用数据时，可以将变量赋值为null
+-->
+</head>
+<body>
+	<h2>基本类型变量的赋值、复制、及作用域</h2>
+	<p id="demo1"></p>
+	<p style="color:deeppink">看控制台</p>
+	<script>
+		var name="Bob",age=23,job;
+		//基本类型的复制
+		var name2=name;name='David';
+		console.log("name: "+name+",name2: "+name2);
+		//未初始化的变量，其值为undefined
+		var demo=document.getElementById("demo1").innerHTML = name2+" is "+age+",works as "+job;
+		//不能为基本类型变量添加动态属性
+		name.family="Steven";
+		age.type='int';
+		console.log(name.family+','+age.type);
+		console.log("\n");
+		
+		//全局变量与局部变量
+		var a = 99,b=666,c=8,e=0.1;            // 全局变量a
+		if(a){
+			alert(a);	//{}并不能表示局部环境，即javascript没有块级作用域
+		}
+		
+		f();                   // f是函数，虽然定义在调用的后面，但是函数声明会提升到作用域的顶部。 
+		console.log("%c最终a的值为："+a,'color:red');        // a=>99,  此时是全局变量的a
+		console.log('%cd:'+d,'color:orange');
+		console.log("%ce: "+e,'color:olive');
+		console.log('%cf: '+f,'color:skyblue');
+		//console.log('g: '+g);//error
+		
+		function f() {
+		  	console.log(a+","+b);
+		  	console.log(c);// 当前的c变量是下面变量c声明提升后，默认值undefined
+		  	var c = 10; console.log(c); 
+		  	
+		  	d=1111;	//不加var声明的是全局变量，函数外部可以访问
+		  	console.log('fun-inner d:'+d);
+		  	var e = 0.01;
+		  	get();
+		  	
+		  	function get(){
+		  		console.log('fun-inner e: '+e);
+		  		f = 'function inner defined, but a global variable.';
+		  		var g = 'function inner data';
+		  		console.log(g)
+		  	}
+		}
+		
+		
+	</script>
+	
+	<h2>引用类型变量的赋值、复制、及作用域</h2>
+	<p id="demo2"></p>
+	<p id="demo3"></p>
+	<script>
+		var obj = new Object();
+		obj.id = 1;	obj.name = 'js知识'; obj.level = '基础';
+		var demo2 = document.getElementById("demo2");
+		demo2.innerHTML = obj.id + "，" + obj.name +"，" + obj.level;
+		copy(obj);
+		document.getElementById("demo3").innerHTML = obj.id + "，" + obj.name +"，" + obj.level;
+		function copy(arg1){
+			console.log("\n");
+			//引用类型的数据传递给参数其引用，在函数内修改数据的属性，外部访问时也将发生变化；
+			console.log(typeof arg1);
+			arg1.id = 101;
+			//即时重新声明了变量obj，它也是局部变量，函数执行完毕即刻销毁
+			var obj = new Object();
+			console.log(obj.id);
+			obj.id = 123;
+		}
+		
+	</script>
+	
+	<script>
+		console.log("\n%c测试null和undefined：",'color:green');
+		var x,y;
+		if(x == null){
+		    console.log(x);		//undefined
+		}
+		if(y == undefined){
+		    console.log(y);		//undefined
+		}
+		x=null,y=undefined;
+		if(!x){
+		    console.log(!x);		//undefined
+		}
+		if(!y){
+		    console.log(!y);		//undefined
+		}
+		
+	</script>
+</body>
+</html>

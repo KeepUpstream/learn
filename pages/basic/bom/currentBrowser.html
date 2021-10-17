@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>判断浏览器</title>
+	</head>
+<body>
+	<p style="color:lightseagreen" onclick="find()">点击查看浏览器类型</p>
+	<p id="demo"></p>
+<script>
+	function find(){
+		document.getElementById("demo").innerHTML=myBrowser();
+	}
+function myBrowser() {
+	var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+	var isOpera = userAgent.indexOf("Opera") > -1;
+	if(isOpera) { //判断是否Opera浏览器
+		return "Opera"
+	};
+	if(userAgent.indexOf("Firefox") > -1) { //判断是否Firefox浏览器
+		return "FF";
+	};
+	if(userAgent.indexOf("Chrome") > -1) {
+		return "Chrome";
+	};
+	if(userAgent.indexOf("Safari") > -1) { //判断是否Safari浏览器
+		return "Safari";
+	};
+	if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera){//判断是否IE浏览器
+		return "IE";
+	};
+}
+//但是使用navigator.userAgent并不是稳定，比如firefox中在about:config使用general.useragent.override='xxx'可以修改userAgent代理信息
+// 【Firefox】
+// 	"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0"
+// 【Chrome]
+// 	"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+// 【360EE】
+// 	"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 QIHU 360EE"
+// 【IE8-Edge】
+// 	"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)"
+// 	"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)"
+// 	"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)"
+// 	"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko"
+</script>
+</body>
+</html>

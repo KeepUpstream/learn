@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+html{
+    font-size:16px;
+    width:100%;
+    height:100%;
+}
+body{
+    margin:0;padding:0;
+    background: #f2f2f2;
+    font-family:Microsoft YaHei, SimHei, SimSun;
+}
+:root {
+	--form-font:1.6rem;
+	--item-height:1rem;
+	--icon-size:1rem;
+	--icon-size-half:0.75rem;
+	
+    --base-color: #434a56;
+    --white-color-primary: #f7f8f8;
+    --gray-color-primary: #515151;
+    --gray-color-secondary: #c2c2c2;
+    --gray-color-tertiary: #676f79;
+    --active-color: #0fb7b7;
+    --valid-color: #44c08a;
+    --invalid-color: #f72f47;
+}
+form.dzj-box {
+    margin: 2rem;
+}
+.dzj-box .formEdit{
+	background:url(./images/formIcon.png) no-repeat center;
+	background-size:100% 100%;
+	padding-left: 3.5rem;
+    padding-top: 3rem;
+    display: inline-block;
+}
+.dzj-box fieldset {
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 0;
+}
+.dzj-box fieldset:before {
+    content: '鉴定申请';
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 103%;
+    background: #93d4d3;
+    color: #fff;
+    letter-spacing: 4px;
+    text-indent: 22px;
+    display: inline-block;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    transform: translateY(-8px);
+}
+.dzj-box input {
+    margin: 1rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-indent: 0.5rem;
+    letter-spacing: 1px;
+}
+.dzj-box input[type="date"] {
+    position: relative;
+    width: 14rem;
+}
+.dzj-box input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
+.dzj-box select.item-content {
+	background-color: #fff;
+    display: inline-block;
+    line-height: 2rem;
+    height: 2rem;
+    width: 20%;
+    font-size: 1rem;
+    color: #606060;
+}
+.dzj-box .radio__input {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+}
+.dzj-box .radio {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    margin: 1rem 0;
+    width: fit-content;
+}
+.dzj-box span.radio__text {
+    padding: 5px 40px;
+    margin-right: 2rem;
+    height: var(--icon-size);
+    line-height: var(--icon-size);
+    font-size: var(--form-font);
+    letter-spacing: 0.3rem;
+}
+.dzj-box .radio__icon {
+	background:#fff;
+	padding: 5px;
+    border: 1px solid var(--gray-color-primary);
+    display: inline-block;
+    height: var(--icon-size);
+    position: relative;
+    transition: border-color 0.5s;
+    width: var(--icon-size);
+}
+.dzj-box .radio__icon::before {
+    background-color: var(--gray-color-secondary);
+    transition: background-color 0.5s, opacity 0.5s;
+}
+.dzj-box .radio__icon::before, .radio__icon::after {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    content: "";
+    height: var(--icon-size-half);
+    opacity: 0;
+    position: absolute;
+    width: var(--icon-size-half);
+}
+.dzj-box .radio__input:checked + .radio__icon {
+    border-color: var(--valid-color);
+}
+.dzj-box .radio__input:checked + .radio__icon::before {
+    background-color: var(--valid-color);
+    opacity: 1;
+}
