@@ -31,3 +31,27 @@
  * 6.寄生式继承
  * 7.class继承
 */
+var log = console.log;
+
+var doSomething = function(){};
+testFunc.prototype.foo='bar';
+log( testFunc.prototype );
+
+var testObj = new testFunc();
+testObj.foo='zoo';
+log(testObj);
+log(testObj.foo);
+
+// 定义一个动物类
+function Animal(name) {
+	// 属性
+	this.name = name || 'Animal';
+	// 实例方法
+	this.sleep = function () {
+		console.log(this.name + '正在睡觉！');
+	}
+}
+// 原型方法
+Animal.prototype.eat = function (food) {
+	console.log(this.name + '正在吃：' + food);
+};
