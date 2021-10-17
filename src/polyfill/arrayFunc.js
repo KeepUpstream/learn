@@ -2,11 +2,7 @@
  * 数组扁平化 arr.flat(Depth)
 */
 function flattenArray(array,deep = 1){
-	return deep>1? 
-			array.reduce((acc,val)=>{
-				Array.isArray(val)? flattenArray(val,deep-1) : [];
-			})
-			:array.slice();
+	return deep>1? array.reduce((acc,val)=>{Array.isArray(val)? flattenArray(val,deep-1) : []}) :array.slice();
 }
 
 /** * 数组 reduce 的实现 */ 

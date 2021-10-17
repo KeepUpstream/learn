@@ -3,22 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<script src="../../../src/polyfill/extend/prototype.js"></script>
+	<script src="../../../src/polyfill/extend/extend_constructor.js"></script>
+	<script src="../../../src/polyfill/extend/extend_prototype.js"></script>
 	<title>了解原型</title>
 </head>
 <body>
 <script type="text/babel">
-	var log = console.log;
-	function doSomething(){}
-	log(doSomething.prototype);
-	
-	var doSomething = function(){};
-	doSomething.prototype.foo='bar';
-	console.log( doSomething.prototype );
-	
-	var doSomethingInstance = new doSomething();
-	doSomethingInstance.foo='zoo';
-	console.log(doSomethingInstance);
-	console.log(doSomethingInstance.foo);
 	
 	log("%c下面我们体验构造器，注意构造器内普通方法和原型方法的区别","color:red;font-weight:bold")
 	function Person(first, last, age, gender, interests) {
@@ -33,20 +24,22 @@
 			log("I'm",this.name.first,", a person of "+this.age)
 		}
 	};
+
+Person.prototype.bio = function(){
+	return this.gender;
+}
+Person.prototype.farewell = function() {
+	alert(this.name.first + ' has left the building. Bye for now!');
+}
 	var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
 	log(person1)
 	
-	Person.prototype.bio = function(){
-		return this.gender;
-	}
 	var person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
 	log(person3.name.first,person3.age,person3.bio())
 	log(person3.constructor.name)
 	
-	Person.prototype.farewell = function() {
-	  	alert(this.name.first + ' has left the building. Bye for now!');
-	}
 	person3.farewell()
+	//试着修改实例方法say，看看效果
 	person3.say = function(){log("hello")}
 	person3.say()
 	person1.say()
@@ -86,31 +79,31 @@
 	log(teacher1);
 
 	log("%c下面我们体验es6--class","color:red;font-weight:bold");
-	class Pepole {
-	  constructor(first, last, age, gender, interests) {
-	    this.name = {
-	      first,
-	      last
-	    };
-	    this.age = age;
-	    this.gender = gender;
-	    this.interests = interests;
-	  }
+	// class Pepole {
+	//   constructor(first, last, age, gender, interests) {
+	//     this.name = {
+	//       first,
+	//       last
+	//     };
+	//     this.age = age;
+	//     this.gender = gender;
+	//     this.interests = interests;
+	//   }
 	
-	  greeting() {
-	    console.log(`Hi! I'm ${this.name.first}`);
-	  };
+	//   greeting() {
+	//     console.log(`Hi! I'm ${this.name.first}`);
+	//   };
 	
-	  farewell() {
-	    console.log(`${this.name.first} has left the building. Bye for now!`);
-	  };
-	}
-	class Professor extends Person {
-	  constructor(subject, grade) {
-	    this.subject = subject;
-	    this.grade = grade;
-	  }
-	}
+	//   farewell() {
+	//     console.log(`${this.name.first} has left the building. Bye for now!`);
+	//   };
+	// }
+	// class Professor extends Person {
+	//   constructor(subject, grade) {
+	//     this.subject = subject;
+	//     this.grade = grade;
+	//   }
+	// }
 </script>
 </body>
 </html>
