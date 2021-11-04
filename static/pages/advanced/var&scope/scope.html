@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="./scope.js"></script>
+	<title>变量及作用域</title>
+</head>
+<body>
+	<ul>
+		<li>- 在函数内访问一个函数内没有定义的变量时，会从函数的上一层作用域内寻找，直至找到或遍历到window；</li>
+		<li>- 在函数内访问一个函数内部有且和外部变量重名的变量时，会存在变量的提升，即在进入函数内部时会创建一个新的变量，其值为undefined，等执行到真正的赋值语句时才进行赋值；</li>
+		<li>- let、const声明的变量及函数表达式不进行提升，存在暂时性死区；</li>
+	</ul>
+</body>
+</html>

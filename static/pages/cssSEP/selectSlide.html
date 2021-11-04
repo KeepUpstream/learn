@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../js/jquery.js" ></script>
+    <title>slideup 和 slideDown效果</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #box {
+        margin: 0 auto;
+        margin-top: 40px;
+        width: 200px;
+    }
+ 
+    #box li {
+        list-style: none;
+    }
+ 
+    #box ul {
+        transition: all 1s;
+        overflow: hidden;
+        height: 60px;
+    }
+ 
+    .show {
+        height: 0px !important;
+    }
+    </style>
+</head>
+<body>
+	<div id="box">
+        <h2>菜单</h2>
+        <ul class="show">
+            <li>html</li>
+            <li>css</li>
+            <li>JavaScript</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    $('body').on('click', 'h2', function() {
+        $("#box ul").toggleClass('show')
+    })
+    </script>
+</body>
+</html>

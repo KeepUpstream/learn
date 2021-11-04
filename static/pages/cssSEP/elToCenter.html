@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/test/elToCenter.css" />
+	<title>元素居中</title>
+</head>
+<body>
+	<h2>1. 盒内有1个子元素(宽高已知，不管是px还是%)</h2>
+	<ul>
+		<li>1) 子元素设置margin:0 auto</li>
+		<li>2) 父元素设置text-algin:center;子元素设置display:inline-block/inline;</li>
+	</ul>
+	<div class="box">
+		<div class="item">教你学会设置元素水平居中</div>
+	</div>
+	
+	<h2>2. 盒内有1个子元素</h2>
+	<ol>
+		<li>使用内外边距
+			<ul>
+				<li>可以通过margin-top、margin-left</li>
+			</ul>
+		</li>
+		<li>使用相对定位
+			<ul>
+				<li>子元素设置position:relative及top、left</li>
+			</ul>
+		</li>
+		<li>使用绝对定位（子元素相对于父元素绝对定位）
+			<ul>
+				<li>子元素设置结合margin-top、margin-left为负值（若子元素大小已知）</li>
+				<li>子元素设置top、left、right、bottom为0，margin：auto（若子元素大小固定）</li>
+				<li>子元素设置position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)</li>
+			</ul>
+		</li>
+	</ol>
+	<div class="box1">
+		<div class="item2">教你学会设置元素：水平&垂直居中</div>
+	</div>
+	
+	<div class="box2">
+		<div class="card1"></div>
+		<div class="card2"></div>
+		<div class="card3"></div>
+	</div>
+</body>
+</html>

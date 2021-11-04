@@ -1,0 +1,22 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript">
+function checkForm(){
+var name=document.form1.number.value; //or form1.number.value
+var name=document.forms[0].number.value;
+var name=document.forms[0]['number'].value;
+var name=document.form1['number'].value //or form1['number'].value
+alert(name);
+
+}
+</script>
+</head>
+<body>
+<form name="form1" method="post" action="">
+网元名称:<input type="text" name="number" size="20">
+<br>
+<input type="submit" value="提交" onClick="checkForm()">
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>按钮斜切效果</title>
+<style>
+	.cornerCut{
+		width: 422px;
+	    margin: 10px 20px;
+	    height: 200px;
+	    background: #58a;
+	    color: #fff;
+	    text-align: center;
+	    font-size: 10px;
+	    box-shadow: 10px 10px 20px 10px #1e501e;
+	    border-radius: 97px 0px 0px 106px;
+	    background: linear-gradient(-45deg, transparent 141px, #3b3 0) top right;
+	}
+	.d{
+	    width: 198px;
+	    height: 100px;
+	    background-color: #e324e3;
+	    border-radius: 647px 0px 0px 220px;
+	    transform: perspective(3em) rotateX(-20deg);
+	    margin-left: 95px;
+	    box-shadow: 6px 8px 3px 5px #3a163a;
+	}
+	
+	p:last-child:after{
+		display: block;
+		content: "";
+		width: 200px;
+		height: 200px;
+		border-radius: 20px 0px 0px 20px;
+    	box-shadow: 10px 10px 10px 10px blue;
+		border-top:100px solid red;
+		border-right:100px solid transparent;
+	}
+	
+        
+</style>
+</head>
+<body>
+	<div class="cornerCut">corner cutcorner cutcorner cutcorner cut</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="d"></div>
+	
+    
+</body>
+</html>
