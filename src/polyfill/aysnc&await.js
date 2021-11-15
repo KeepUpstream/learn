@@ -11,7 +11,7 @@
  * }
  * 等同于
  * function fn(args){
- *      return spawn(function*(){// spawn 函数就是自动执行器
+ *      return spawn(function*(){// spawn函数就是自动执行器
  *      ...
  *      });
  * }

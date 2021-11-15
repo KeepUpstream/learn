@@ -15,3 +15,14 @@
     background-color: blue;
     height: 200px;
 }
+
+.parent{
+	width: 200px;
+	height:100px;
+	background-color: red;
+}
+.child{
+	width: 100%;
+	padding:25% 0;
+	background-color: yellow;
+}

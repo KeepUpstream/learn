@@ -568,3 +568,140 @@ animation-play-state: paused; //running
 
 
 
+ 
+
+ 
+
+CSS浮动和定位：
+
+​	脱离文档流，
+
+​	定位宽度设置相对浏览器窗口。
+
+CSS布局之垂直居中：
+
+https://baijiahao.baidu.com/s?id=1645296170141430719&wfr=spider&for=pc
+
+https://blog.csdn.net/weixin_43720095/article/details/89061246
+
+https://www.cnblogs.com/serdy/p/11779479.html
+
+https://segmentfault.com/a/1190000016389031
+
+ 
+
+Flex布局
+
+1.基础简介https://www.runoob.com/w3cnote/flex-grammar.html
+
+2.知识总结https://www.cnblogs.com/hellocd/p/10443237.html
+
+3.兼容性[https://caniuse.com/#feat=flexbox](#feat=flexbox)
+
+ 
+
+Grid布局
+
+http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
+
+
+
+
+
+## ***\*CSS Hack\****
+
+​	简单的说，CSS hack的目的就是使你的CSS代码兼容不同的浏览器。当然，我们也可以反过来利用CSS hack为不同版本的浏览器定制编写不同的CSS效果。
+
+ 
+
+​	CSS Hack大致有3种表现形式，CSS类内部Hack、选择器Hack以及HTML头部引用(if IE)Hack，CSS Hack主要针对类内部[Hack](https://baike.baidu.com/item/Hack)：比如 IE6能识别下划线"_"和星号" * "，IE7能识别星号" * "，但不能识别下划线"_"，而firefox两个都不能认识。
+
+（1）方式一 条件注释法
+
+只在IE下生效
+
+<!--[if IE]>
+
+这段文字只在IE浏览器显示
+
+<![endif]-->
+
+只在IE6下生效
+
+<!--[if IE 6]>
+
+这段文字只在IE6浏览器显示
+
+<![endif]-->
+
+只在IE6以上版本生效
+
+<!--[if gte IE 6]>
+
+这段文字只在IE6以上(包括)版本IE浏览器显示
+
+<![endif]-->
+
+只在IE8上不生效
+
+<!--[if ! IE 8]>
+
+这段文字在非IE8浏览器显示
+
+<![endif]-->
+
+非IE浏览器生效
+
+<!--[if !IE]>
+
+这段文字只在非IE浏览器显示
+
+<![endif]-->
+
+（2）方式二 类内属性前缀法
+
+属性前缀法是在CSS样式属性名前加上一些只有特定浏览器才能识别的hack前缀，以达到预期的页面展现效果。 
+
+说明：在标准模式中
+
+· “-″减号是IE6专有的hack
+
+· “\9″ IE6/IE7/IE8/IE9/IE10都生效
+
+· “\0″ IE8/IE9/IE10都生效，是IE8/9/10的hack
+
+· “\9\0″ 只对IE9/IE10生效，是IE9/10的hack
+
+（3）CSS hack方式三：选择器前缀法
+
+​	选择器前缀法是针对一些页面表现不一致或者需要特殊对待的浏览器，在CSS选择器前加上一些只有某些特定浏览器才能识别的前缀进行hack。
+
+目前最常见的是
+
+​	*html 	*前缀只对IE6生效
+
+​	*+html 	*+前缀只对IE7生效
+
+​	@media screen\9{...}	只对IE6/7生效
+
+​	@media \0screen {body { background: red; }}只对IE8有效
+
+​	@media \0screen\,screen\9{body { background: blue; }}只对IE6/7/8有效
+
+​	@media screen\0 {body { background: green; }} 只对IE8/9/10有效
+
+​	@media screen and (min-width:0\0) {body { background: gray; }} 只对IE9/10有效
+
+​	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {body { background: orange; }} 只对IE10有效等等
+
+ 
+
+## ***\*不同浏览器对和模型的解释不同\****
+
+\1. 标准模型&IE模型
+
+​	https://www.wandouip.com/t5i93928/
+
+​	css3用这句把盒模型设为怪异模式就一致了：	box-sizing: border-box;
+
+\2. 
