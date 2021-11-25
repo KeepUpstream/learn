@@ -203,8 +203,7 @@ console.log([] == 0); //true
 // 分析:
 //(1) [].valueOf().toString() == 0  
 //(2) Number('') == 0  
-//(3) false == 0  
-//(4) 0 == 0
+//(3) 0 == 0
 console.log(![] == 0); //true
 // 分析: 
 //逻辑非优先级高于关系运算符 ![] = false (空数组转布尔值得到true)
@@ -722,7 +721,7 @@ const {self, prot} = obj;
 
 ##### for of 与 for in
 
-- for..of适用遍历数/数组对象/字符串/map/set等拥有迭代器对象的集合.但是不能遍历对象,因为没有迭代器对象.与forEach()不同的是，它可以正确响应break、continue和return语句
+- for..of适用遍历数组对象/字符串/map/set等拥有迭代器对象的集合.但是不能遍历对象,因为没有迭代器对象.与forEach()不同的是，它可以正确响应break、continue和return语句
 - for-of循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用for-in循环（这也是它的本职工作）或内建的Object.keys()方法：
 
 ```jsx
@@ -795,7 +794,7 @@ elements.map(element => element.length); // [8, 6, 7, 9]
 ### 1.3.5 函数作用域和执行上下文
 
 - 函数体内的`this`对象，就是定义时所在的对象，而不是使用时所在的对象。
-- 箭头函数本身没有this，this继承上级的this。
+- 箭头函数本身没有this，this继承函数定义上下文中的this。
 - 定时器中箭头函数的this指向包含定时器的函数
 
 ### 1.3.6 纯函数
@@ -855,7 +854,7 @@ for(var i=0;i<10;i++){
   })(i);
 }
 //方式3 let变量
-for(var i=0;i<10;i++){
+for(let i=0;i<10;i++){
   setTimeout(i=>{
       console.log(i);
   },1000*i);
