@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>CSS的层叠</title>
+    <style>
+      h1 + p {
+        color:black;
+        font-style:italic;
+      }
+      p{
+        color:gray;
+        background: yellow;
+        font-style: normal;
+      }
+      *.aside{
+        color: red;
+        background: silver;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Greetings</h1>
+    <p class="aside">It's a fine way to start a day, don't you think?</p>
+    <p>There are many ways to greet a person, but the words are not as important as the act of greeting itself.</p>
+    
+    <h1>Situations</h1>
+    <p>It's a fine way to start a day, don't you think?</p>
+    <p class="aside">There are many ways to greet a person, but the words are not as important as the act of greeting itself.</p>
+
+  </body>
+</html>

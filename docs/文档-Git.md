@@ -1,4 +1,8 @@
-# git常用命令
+# 官网
+
+https://git-scm.com/book/zh/v2
+
+# Git常用命令
 
 ## 1. 配置
 
@@ -123,6 +127,18 @@ git config --global init.defaultBranch master
 
 ## 2. 常用指令
 
+##### 获得帮助
+
+```js
+//获取git命令的综合手册页
+git help <verb>
+git <verb> --help
+man git-<verb>
+  
+//快速了解git命令的可用选项
+git <verb> -h
+```
+
 ### 2.1 使用仓库
 
 ##### 新建仓库
@@ -232,7 +248,7 @@ git commit --amend [file1] [file2]
 
 ### 2.3 历史版本
 
-##### 查看版本历史
+##### 查看版本修改记录
 
 ```js
 git log				 //显示当前版本提交历史信息
@@ -254,9 +270,21 @@ $ git log -p [file]
 $ git log -5 --pretty --oneline
 //显示所有提交过的用户，按提交次数排序
 $ git shortlog -sn
-//显示指定文件是什么人在什么时间修改过
-$ git blame [file]
 
+//显示当前分支的最近几次提交
+$ git reflog
+```
+
+##### 查看文件修改记录
+
+```js
+//显示指定文件是什么人在什么时间修改过
+$ git blame [file]	//文件路径要正确
+```
+
+##### 文件差异性对比
+
+```js
 //显示暂存区和工作区的差异
 $ git diff
 //显示暂存区和上一个commit的差异
@@ -274,8 +302,6 @@ $ git show [commit]
 $ git show --name-only [commit]
 //显示某次提交时，某个文件的内容
 $ git show [commit]:[filename]
-//显示当前分支的最近几次提交
-$ git reflog
 ```
 
 
@@ -320,6 +346,14 @@ git branch    //列出所有本地分支
 git branch -r //列出所有远程分支
 git branch -a //列出本地分支和远程分支
 ```
+
+更新远程分支列表
+
+```js
+git remote update origin --prune
+```
+
+
 
 ##### 新建分支
 
@@ -367,20 +401,35 @@ git checkout -b [branch] origin/[remote-branch]
 ```js
 //从指定分支更新代码到本地
 git pull origin develop
-```
 
-##### 合并分支
-
-###### 远程合并
-
-```js
 $ git pull [remote] [branch] //取回远程仓库的变化，并与本地分支合并
-
-//如果push之前没有pull 发生报错，可以行命令
-$ git pull --rebase origin master //相当于fetch+merge，--rebase的作用在取消commit记录，并把它们临时保存为补丁（patch，放在.git/rebase目录中），之后同步远程仓库到本地，最后合并补丁到本地仓库。
 ```
 
 ![git-pull-rebase](./image-git/git-pull-rebase.png)
+
+**冲突解决**
+
+​		在更新代码时，最新更改内容与本地更改有冲突很常见。解决方式有两种：
+
+（1）先将自己的所有修改添加到暂存区
+
+```js
+git add .
+git commit -m "fix:"
+git pull origin master
+```
+
+（2）先将代码回滚到上一次提交版本
+
+```
+git stash
+git pull origin master
+git stash pop
+```
+
+**git pull --rebase命令**
+
+可以行命令`$ git pull --rebase origin master` ，他相当于fetch+merge，--rebase的作用在取消commit记录，并把它们临时保存为补丁（patch，放在.git/rebase目录中），之后同步远程仓库到本地，最后合并补丁到本地仓库。
 
 Git pull --rebase做了一下操作：
 
@@ -392,22 +441,23 @@ c. 从暂存区把之前提交的内容取出跟拉取的新代码进行合并
 
 所以，在拉取代码钱要确保你本地的工作区是干净的，如果本地修改的内容没完全commit或stash，就会rebase失败。
 
-###### 远程推送
+https://blog.csdn.net/wq6ylg08/article/details/114106272
+
+##### 远程推送
 
 如果是clone来的仓库，服务器地址会出现在你的仓库中。注意：在推送本地仓库的更改到远程仓库之前，需要将远程仓库的最新更改同步到本地仓库，不然会发生冲突。
 
 ```js
 $ git push origin master //推送本地仓库提交的更改
-如果提示报错：
-fatal: unable to access 'https://github.com/KeepUpstream/testgit.git/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 
-是因为网络连接超时，等待重新push
---others:
-$ git push [remote] [branch] //上传本地指定分支到远程仓库
-$ git push [remote] --force //强行推送当前分支到远程仓库，即使有冲突
-$ git push [remote] --all //推送所有分支到远程仓库
+//如果提示报错：
+//fatal: unable to access 'https://github.com/KeepUpstream/testgit.git/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 
+//是因为网络连接超时，等待重新push
+
+//--others:
+$ git push [remote] [branch] 	//上传本地指定分支到远程仓库
+$ git push [remote] --force 	//强行推送当前分支到远程仓库，即使有冲突
+$ git push [remote] --all 		//推送所有分支到远程仓库
 ```
-
-
 
 如果是本地建立的仓库temp，默认没有Git服务器地址，需在github中创建test.git，然后将本地仓库temp和远程仓库test.git相关联
 
@@ -417,38 +467,18 @@ $ git remote -v //显示所有远程仓库
 $ git push -u origin master
 ```
 
-
-
-```js
-//下载远程仓库的所有变动
-$ git fetch [remote]
-//显示某个远程仓库的信息
-$ git remote show [remote]
-$ git remote add [shortname] [url] //增加一个新的远程仓库，并命名
-```
-
-
+##### 合并分支
 
 ```js
-git merge [branch] 				//合并指定分支到当前分支
+//切换分支
+git checkout master
+//将develop分支的代码合并到master分支
+git merge develop
+git push origin master
 git cheery-pick [commit] 	//选择一个commit，合并进当前分支
 ```
 
-当merge遇到冲突时，解决办法有两种：
-
-（1）自己没啥更改，回退到merge前版本，去更新他人提交的代码
-
-```js
-git reset --merge 
-```
-
-（2）自己更改的文件与他人更改的文件不是同一个
-
-
-
-（3）自己与他人同时更改了同一个文件
-
-​		手动解决冲突
+​		如果是团队合作，往往是需要将本地代码同步到响应远程分支之后，在切换到develop分支，然后`create merge request`向项目管理人发起合并分支请求，等对方审核是否将自己分支合并到develop分支中去。
 
 ##### 删除分支
 
@@ -456,7 +486,6 @@ git reset --merge
 git branch -d [branch-name] //删除分支
 //删除远程分支
 git push origin --delelte [branch-name]
-git branch -dr [remote/branch]
 ```
 
 ### 2.6  标签
