@@ -153,6 +153,14 @@ $ mkdir test
 $ git init test
 ```
 
+显示所有远程仓库
+
+```js
+git remote -v
+```
+
+
+
 ##### 导入已有仓库
 
 ```js
@@ -164,6 +172,14 @@ git config --global http.sslVerify "false"
 //ssh方式导入
 git clone git@github.com:KeepUpstream/learn.git
 ```
+
+删除远程仓库
+
+```js
+git remote rm origin 远程分支地址
+```
+
+
 
 ### 2.2 暂存区
 
@@ -388,10 +404,14 @@ git push origin develop-zyh-20211201
 ##### 切换分支
 
 ```js
+// 切换本地分支
 git checkout [branch-name] 	//切换到指定分支并更新工作区
 git checkout - 							//切换到上一分支
 //以远程分支为基础新建一个新分支，并切换至该分支
 git checkout -b [branch] origin/[remote-branch] 
+
+// 切换远程分支
+git remote set-url origin http://gitlab.inner.com/ccb-dev/ccbscf-risk-server 
 ```
 
 ##### 更新分支
@@ -483,10 +503,41 @@ git cheery-pick [commit] 	//选择一个commit，合并进当前分支
 ##### 删除分支
 
 ```js
-git branch -d [branch-name] //删除分支
+git branch -d [branch-name] //删除本地分支
 //删除远程分支
 git push origin --delelte [branch-name]
 ```
+
+##### 多分支同时开发
+
+​		许多功能在发版上线之后会有bug修复、新增需求等，往往不同任务会基于不同分支进行开发。那么，如何在暂存基于A分支开发的代码，切换到B分支在进行开发，同时做到各分支代码“随用随取，互不干扰”呢？
+
+方式一：git stash list
+
+```js
+git stash 会将当前本地的修改保存到本地
+
+git stash list 查看当前stash的记录
+
+git stash pop 取出stash，并【删除记录】(默认是最近一次)
+git stash pop + "stash@{X}"  取出X记录
+
+git stash apply 取出stash，不删除记录
+git stash apply + "stash@{X}"  取出X记录
+
+git stash drop + "stash@{X}"  删除X记录
+
+git stash clear 删除所有记录
+
+git stash show 展示最近一次记录
+git stash show + "stash@{X}" 展示X次记录
+git stash show -p 展示最近一次记录修改的对比，好似在Linux上看文件的diff
+
+```
+
+方式二：git worktree
+
+
 
 ### 2.6  标签
 

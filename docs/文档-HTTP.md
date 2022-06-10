@@ -497,7 +497,7 @@ responseXML
 responseUrl
 status
 statusText
-upload代表上传进度
+upload    //对应XMLHttpRequestUpload对象，代表上传进度
 //可写
 responseType	//"" arraybuffer blob document json Text ms-stream **level 2才提供**
 timeout 			//当为0时为不设置超时
