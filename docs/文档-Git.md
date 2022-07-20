@@ -107,7 +107,9 @@ cat id_rsa.pub
 然后，复制密钥粘贴到github仓库个人账户settings->SSH and GPG keys->new SSH key
 参考链接：https://www.jianshu.com/p/dc484632c547
 
-#### Gitlab账号及SSH Key配置
+#### 
+
+账号及SSH Key配置
 
 #### GitHub与Gitlab账号切换
 
@@ -411,7 +413,7 @@ git checkout - 							//切换到上一分支
 git checkout -b [branch] origin/[remote-branch] 
 
 // 切换远程分支
-git remote set-url origin http://gitlab.inner.com/xxx
+git remote set-url origin xxx
 ```
 
 ##### 更新分支
