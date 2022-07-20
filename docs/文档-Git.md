@@ -411,7 +411,7 @@ git checkout - 							//切换到上一分支
 git checkout -b [branch] origin/[remote-branch] 
 
 // 切换远程分支
-git remote set-url origin http://gitlab.inner.com/ccb-dev/ccbscf-risk-server 
+git remote set-url origin http://gitlab.inner.com/xxx
 ```
 
 ##### 更新分支
