@@ -53,7 +53,7 @@ HTTP是B/S架构模式，即客户端发起请求，服务器送回响应。一�
 
 ![TCP四次挥手](\image-http/TCP四次挥手.png)
 
-过程描述：
+**【过程描述】**
 
 1）客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入**FIN-WAIT-1**（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。
 2）服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了**CLOSE-WAIT**（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。
@@ -62,7 +62,7 @@ HTTP是B/S架构模式，即客户端发起请求，服务器送回响应。一�
 5）客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了**TIME-WAIT**（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命的时间）后，当客户端撤销相应的TCB后，才进入CLOSED状态。
 6）服务器只要收到了客户端发出的确认，立即进入**CLOSED**状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些。
 
-#### 常见问题
+**【常见问题】**
 
 1. 为甚连接的时候是三次，而关闭的时候时四次？
 
@@ -82,7 +82,7 @@ HTTP是B/S架构模式，即客户端发起请求，服务器送回响应。一�
 
    ​	TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。
 
-## HTTP的诞生及发展历程
+## HTTP发展历程
 
 ​		20世纪60年代，美国国防部高等研究计划署建立了ARPA网。
 
@@ -100,7 +100,7 @@ GET+请求的文件路径
 
 服务端收到请求后返回一个以ASCII字符流编码的HTML文档。虽然简单，但是它充分验证了web服务的可行性。
 
-#### HTTP/1.0
+**HTTP/1.0**
 
 随着互联网的发展以及浏览器的出现，单纯的文本内容已经无法满足用户需求了，浏览器希望通过 HTTP 来传输脚本、样式、图片、音频和视频等不同类型的文件，所以在 1996 年 HTTP 更新的 1.0 版本中引入了如下特性：
 
@@ -114,7 +114,7 @@ GET+请求的文件路径
 
 **但是 HTTP/1.0 并不是一个“标准”，只是一份参考文档，不具有实际的约束力。**
 
-#### HTTP/1.1
+**HTTP/1.1**
 
 随着互联网的迅速发展，HTTP/1.0 也已经无法满足需求，最核心的就是连接问题。在 HTTP 1.1 中，发起一个请求是这样的：
 
@@ -137,7 +137,7 @@ GET+请求的文件路径
 
 **HTTP/1.1 是一个“正式的标准”。**
 
-#### HTTP/2.0
+**HTTP/2.0**
 
 HTTP/1.1 通过长连接减少了大量创建/断开连接造成的性能消耗，但是它的并发能力受到限制，表现在两个方面：
 
@@ -174,7 +174,7 @@ HTTP/2是基于二进制“帧”的协议，HTTP/1.1是基于“文本分割”
 （2）解析这种数据无法预知需要多少内存，这会带给“服务端”很大的压力，因为它不知道要把一行要解析的内容读到多大的“缓冲区”中，在保证解析效率和速度的前提下：内存该如何分配？
 ```
 
-#### HTTP/3.0
+**HTTP/3.0**
 
 ​		当然 HTTP/2 也并非完美，如果客户端或服务端在通信时出现数据包丢失，或者任何一方的网络出现中断，那么整个 TCP 连接就会暂停。
 
@@ -184,7 +184,7 @@ HTTP/2是基于二进制“帧”的协议，HTTP/1.1是基于“文本分割”
 
 ​		2018 年 HTTP/3 将底层依赖的 TCP 改成 UDP，从而彻底解决了这个问题。UDP 相对于 TCP 而言最大的特点是传输数据时不需要建立连接，可以同时发送多个数据包，所以传输效率很高，缺点就是没有确认机制来保证对方一定能收到数据。
 
-#### 总结
+**总结**
 
 | 协议版本 | 解决的核心问题           | 解决方式                               |
 | -------- | ------------------------ | -------------------------------------- |
@@ -271,7 +271,7 @@ multipart/form-data ： 需要在表单中进行文件上传时，就需要使�
 
 这类消息头仅对单次传输连接有意义，不能通过代理或缓存进行重新转发。这些消息头包括 [`Connection`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Connection), [`Keep-Alive`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Keep-Alive), [`Proxy-Authenticate`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Proxy-Authenticate), [`Proxy-Authorization`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Proxy-Authorization), [`TE`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/TE), [`Trailer`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Trailer), [`Transfer-Encoding`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Transfer-Encoding) 及 [Upgrade (en-US)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade)。注意，只能使用 [`Connection`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Connection) 来设置逐跳一般头。
 
-##### 通用首部
+**通用首部**
 
 最常见的通用首部包括：[`Date`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Date)、[`Cache-Control`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control) 或 [`Connection`](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Connection)。
 
@@ -283,7 +283,7 @@ multipart/form-data ： 需要在表单中进行文件上传时，就需要使�
 
 ![http-request-header](\image-http\http-request-header.webp)
 
-###### (1) 状态行
+**(1) 状态行**
 
 - method		请求方法
 
@@ -306,7 +306,7 @@ OPTIONS 预检请求，允许客户端查看服务器的性能
 
 ![image-20211105203507543](\image-http/http-put和post的区别.png)
 
-###### (2) 报文头
+**(2) 报文头**
 
 有若干个属性，形式为key-value，服务端据此获取客户端信息。**每行用一个“回车换行”分隔，末尾再追加一个“回车换行”作为整个请求的结束。**
 
@@ -333,13 +333,13 @@ Content-Range: bytes 500-999/1000
 - 如果我们请求的文件的URL是类似http://www.server.com/filename.exe这样的文件下载，则不会有问题。
 - 但是很多软件下载网站的文件下载链接都是通过程序重定向的，比如pchome的ACDSee的HTTP下载地址是：http://download.pchome.net/php/tdownload2.php?sid=5547&url=/multimedia/viewer/acdc31sr1b051007.exe&svr=1&typ=0 这种地址并没有直接标识文件的位置，而是通过程序进行了重定向。如果向服务器请求这样的URL，服务器就会返回302（Moved Temporarily），意思就是需要重定向，同时在HTTP头中会包含一个Location字段，Location字段的值就是重定向后的目的 URL。这时就需要断开当前的连接，而向这个重定向后的服务器发请求。
 
-###### (3) 报文体
+**(3) 报文体**
 
 ​		将页面表单中组件值通过param1=value&param2=val2的键值对形式编码成一个格式化串，他承载多个请求参数的数据，不但报文头可以传递请求参数，URL也可以通过“/chapter15/user.html? param1=value1&param2=value2”的方式传递数值
 
 
 
-##### **请求实例**
+##### 请求实例
 
 ```js
 :authority: sensors.ibreader.com
@@ -543,7 +543,7 @@ IE10/IE11部分支持，不支持 xhr.responseType为json
 
 部分浏览器不支持xhr.responseType为blob
 
-### 1.3 web中间件
+## 2. web中间件
 
 1. 简介
    https://blog.csdn.net/qq_33163046/article/details/113363426
@@ -551,47 +551,158 @@ IE10/IE11部分支持，不支持 xhr.responseType为json
 2. 存在的漏洞
    https://www.cnblogs.com/wjw-zm/p/11802615.html
 
-## 2. 跨域
+# 二、浏览器同源策略&跨域资源访问
+
+## 2.1 浏览器同源策略
+
+​		协议、域名、端口都相同才叫同源。
+
+（1）受同源策略的限制：
+
+- 无法读取不同源的cookie、localStorage、indexDB
+- 无法获取不同源的DOM
+- 无法向不同源的服务器发送Ajax请求
+
+（2）不受同源策略的限制：
+
+​		在浏览器中，<script>|<img>|<iframe>|<link>等标签都可以跨域加载资源。
+
+浏览器对跨域访问的判定：CORS机制把跨域请求分为两类：简单请求和非简单请求。
+
+> 1）请求方法是以下三种方法之一：HEAD、GET、POST
+>
+> 2）HTTP的头信息不超出以下几种字段：
+> 				Accept
+> 				Accept-Language
+> 				Content-Language
+> 				Last-Event-ID
+> 				Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+> 凡是不同时满足上面两个条件，就属于非简单请求。浏览器对这两种请求的处理，是不一样的。
+
+【简单请求】浏览器会带上Origin的请求头发送到服务器，服务器根据Origin判断是否许可。如果许可就会带上CORS相关想要头，如果不在许可范围内就不会带上CORS相关的响应头。浏览器再根据响应头中是否有相关的CORS响应头，来判断拦截响应body和抛出错误。
+
+【非简单请求】非简单请求会在发真正的请求之前发送一个OPTIONS的带着Origin、Access-Control-Request-Method、Access-Control-Request-Headers等CORS相关的请求头的预检请求到服务器，服务器确认可以这样请求，就会返回带着Access-Control-Allow-Origin、Access-Control-Allow-Methods、Access-Control-Allow-Headers等CORS相关的响应头的响应，浏览器检查到相关的CORS响应头，说明通过预检可以继续发送真正的请求；服务器确认不可以，则不会返回这些相关响应头，浏览器没检查到CORS的响应头就会抛出错误。
+
+## 2.2 跨域问题解决方案
 
 ​		由于浏览器的同源策略（协议、主机、端口号）限制，不同域名之间不能进行信息访问。
 
 常见的跨域方法
 
-##### （1）document.domain
+##### 1. 代理跨域
 
-#####  （2）window.postMessage
+```
+场景1：己方前端请求第三方服务器，不能对第三方服务器做改动；
 
-##### （3）cors
+场景2：微服务架构，需要访问多个服务器上的资源。
+```
 
-##### （4）nginx
+​		**问题原因：**跨域请求报错归根结底是浏览器禁止使用XHR对象向不同源的服务器地址发起HTTP请求，服务器之间相互请求不存在跨域问题。
 
+​		**解决方案：**配置代理服务器，让浏览器只向一个服务器请求，这个服务器代理浏览器去不同的服务器上请求资源再返回给浏览器。例如：Nginx代理服务器。（正向代理&反向代理）
 
+#####  2. CORS
 
-##### 简单请求与非简单请求
+```
+场景：前后端分离开发模式下，本地进行联调
+```
 
-- 请求方式为：HEAD,GET,POST
+**解决方案：**CORS需要浏览器和服务器同时支持。	
 
-- 请求头信息：
+​		整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源Ajax请求类似，浏览器一旦发现Ajax请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加请求，但用户不会有感觉。
 
-  ​			Accept
+​		服务器端实现CORS要给接口的响应头设置：`Access-Control-Allow-Origin：*`
 
-  ​			Accept-Language
+#####  3. jsonp方式
 
-  ​			Content-Language
+```
+场景：跨域发送get请求
+```
 
-  ​			Last-Event-ID
+**解决方案：**<script>标签可以请求不同域名下资源，即` <script> `请求不受浏览器同源策略影响。示例如下：
 
-  ​			Content-Type对应的是以下三个中的任意一个：
+```js
+var script = document.createElement('script')
+script.setAttribute('type','text/javascript')
+script.src = 'http://example.com/ip?callback=foo'
+document.body.appendChild(script)
 
-  ​									application/x-www-form-urlencode
+function foo(data){
+	console.log('Your public IP address is:', data.ip)
+}
+```
 
-  ​									multipart/form-data
+上面的script会向` http://example.com/ `服务器发送请求，这个请求的url后面带了个callback参数，是用来告诉服务器回调方法的方法名的。因为服务器收到请求后，会把相应数据写进foo的参数位置，也就是说服务器会返回的脚本如下
 
-  ​									text/plain
+```js
+foo({ip:'8.8.8.8'})
+```
 
-只有同时满足以上两个条件时，才是简单请求，否则为非简单请求。
+这样浏览器通过<script>下载的资源就是上面的脚本（调用回调方法和拿到的数据），下载完就立即执行。
 
+##### 4. document.domain
 
+```
+场景1：你的http://www.damonare.cn/a.html页面里使用<iframe>调用另一个http://damonare.cn/b.html页面。
+      这时候你想在a页面里获取b页面里的dom，然后进行操作。然后你会发现你不能获得b的dom。
+```
+
+**解决方案：**这时候你只需要在a页面里和b页面里把document.domain设置成相同的值就可以在两个页面里操作Dom了。
+
+```
+场景2：你在http://www.damonare.cn/a.html页面里写入了document.cookie = "test1=hello";你在http://damonare.cn/b.html页面是拿不到这个cookie的。
+```
+
+**解决方案：**Cookie 是服务器写入浏览器的一小段信息，只有同源的网页才能共享。但是，两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie。另外，服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名。这样的话，二级域名和三级域名不用做任何设置，都可以读取这个Cookie。
+
+【注意】
+document.domain限制：虽然可读写，但只能设置成自身或者是高一级的父域且主域必须相同。所以只能解决一级域名相同二级域名不同的跨域问题。
+document.domain只适用于 Cookie 和 iframe 窗口，LocalStorage 和 IndexDB 无法通过这种方法跨域。
+
+##### 5. window.name
+
+```
+场景1：在当前标签页A通过location.href跳转到B页面，在B页面访问A的数据
+场景2：在页面A（http://www.damonare.cn/a.html）内通过iframe调用显示页面B（http://baidu.com/b.html），域完全不同，无法用方案4解决
+```
+
+**解决方案：**源页面和目标页面都可访问window.name，通过不断向window.name赋值实现。
+
+缺点：必须监听子窗口window.name属性的变化。
+
+##### 6. window.postMessage
+
+```
+场景1：popup方式，不同源父页面和子页面之间通信；
+场景2：iframe方式，主页面和嵌套页面之间通信；
+```
+
+**解决方案：**HTML5引入的新API`targetWindow.postMessage(message, targetOrgin, transfer) window.addEventListener("message",onmessage(event))`解决。
+
+【注意】
+
+1）targetWindow是你要发送消息的目标窗口，也就是消息接收方。该引用可以通过这么几种方式获取：
+
+```js
+//弹窗方式
+targetWindow = window.open('xx')
+sourceWindow = window.opener
+//iframe方式
+targetWindow = window.frames[0]
+targetWindow = iframObj.contentWindow
+```
+
+2）注意从event对象中可以取`event.data  event.origin  event.source`
+
+##### 7. Location.hash
+
+​		location.hash就是指URL的#号后面的部分。
+
+```
+场景：父窗口和iframe的子窗口之间通讯  或者是window.open打开的子窗口之间的通讯。
+```
+
+**解决方案：**父窗口改变子窗口的url的#号后面的部分，后者把要传递的参数写在#后面，子窗口监听window.onhashchange事件，得到通知，读取window.location.hash解析出有用的数据。同样子窗口也可以向父窗口传递数据。
 
 ## 3. WebSocket
 
@@ -785,15 +896,10 @@ if (socket.bufferedAmount === 0) {
 
 这也是我一毕业加入的一个伟大的物联网智能家居的公司。考虑到家里的智能设备的状态必须需要实时的展现在手机app客户端上，毫无疑问选择了Websocket。
 
-# 二、模块化规范
+# 【参考资料】
 
-使用：https://www.jianshu.com/p/36ec85a2b394
+1. 跨域问题解决方案汇总：https://blog.csdn.net/weixin_44991965/article/details/107932413
+2. 
 
-### 3.1 CMD
 
-### 3.2 AMD
-
-### 3.3 ES Module
-
-https://segmentfault.com/a/1190000020388889
 

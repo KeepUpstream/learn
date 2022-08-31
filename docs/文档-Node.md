@@ -90,7 +90,23 @@ npm config set registry http://registry.npm.taobao.org  //安装淘宝镜像
 
 [npm镜像及配置方法](https://www.cnblogs.com/zixuan00/p/11197532.html)
 
- 
+如果配置了多个镜像的话，可以使用`nrm use xxx` 进行切换。
+
+#### 1.4 全局安装 vs 局部安装
+
+​		很多时候我们都纳闷，为什么我在项目中执行`npm i`指令后，命名在该项目的`node_moudles/`目录下能看到安装的`@babel/cli`包，但是在`vscode`终端项目根目录下，执行`babel src --out-dir lib `会出现`zsh: command not found: babel`呢？
+
+但是我们这样执行却能够成功：
+
+```js
+// project是项目名
+project % ./node_modules/.bin/babel src/app.vue --out-dir a
+project % npx babel src/app.vue --out-dir as
+```
+
+
+
+
 
 ## 2. 权限问题
 
