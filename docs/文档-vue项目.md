@@ -306,95 +306,15 @@ webpack配置整理：https://www.jianshu.com/p/78e4815889e1
 
 
 
-## 二、Vue源码解读
+## 三、小细节问题
 
-参考链接：https://blog.csdn.net/quanxin0222/article/details/121310600
+#### 1. export default中定义name属性的作用
 
-#### 1. compiler
+答：1）允许组件末班递归地调用自身（使用`Vue.component()`注册全局组件时，全局id自动为组件name）
 
-​		将template编译成render函数。对于在线编译，render在运行时执行，执行时会生成vnode
+2）方便在vue.js官方提供的调试工具vue-devtools中定位组件，进行调试
 
-- 运行时和编译时
-
-  运行时：new Vue()时产生一个对象，包含data、methods、events、lifecycle等，它们通过**“数据与模板的绑定关系”**维持vue的使用，被维持的绑定关系就是运行时。
-
-  编译时：时创建对应关系的代码，编译的对象是template，分为离线编译和在线编译
-
-  ```js
-  离线编译：开发、打包的过程，将.vue业务代码编译成render函数的过程；
-  在线编译：上线的代码在运行时编译，new Vue()代码在浏览器里跑的过程。
-  // vue和react源码区别
-  // react做运行时优化，所以react源码复杂；vue没有太多运行时优化但也很流畅，因为vue做编译时优化，所以vue模板必须按他的规则去写，而react就很灵活。
-  ```
-
-compiler编译步骤：
-
-（1）如果有render函数，那么已经是编译完成的，返回；
-
-（2）判断template：string | dom，离线编译（判断编译环境，执行compileToFunctions函数）；
-
-（3）然后将template编译成函数；
-
-parser：对模板进行AST解析（先分词，再做词法分析）
-
-- html解析
-- filter解析
-- 分析v-for的key
-- 优化：判断静态节点（纯dom、文本没有vue指令的是纯静态节点；若有子节点，子节点也应为静态节点）
-
-#### 2. core：核心
-
-```js
-core目录
-|——component：模板编译代码
-|——global-api：文件接口
-|——instance：实例，处理初始化、状态、数据、生命周期、事件
-|——observer：数据订阅
-|——utils：工具函数
-|——vdom：虚拟dom，使用虚拟dom的原因是，原生dom有很多无用的属性，占用太多内存
-```
-
-- core是vue代码的核心，而 observer 是 core 的核心。它利用 Object.defineProperty 实现对数据的操作拦截，然后将数据绑定到一个 由 观察者模式 为单元（watcher）组成的数据维护中心（Dep）。
-- 对于数组，新增或修改元素可能造成整个数组的元素重新排列，所以对数组进行了重写。所有新增的元素都调用 observer 方法，使其变为一个可观察的对象。
-- 对于任何数据，都进行递归操作，使其任意属性变得可以追踪。
-
-##### 2.1 observer
-
-（1）defineReactive
-
-（2）observer
-
-（3）watcher
-
-（4）Dep
-
-（5）scheduler
-
-（6）nextTick
-
-##### 2.2 components
-
-keep-alive，保存的是 vnode 节点，而不是数据。
-
-由于 vnode 节点比描述状态的数据大一些，所以 keep-alive 能够保存的数据大小有限，所以它存在取舍问题，一般舍弃最老的组件。
-
-对于任意组件，无论是否被添加到 keep-alive 缓存列表中，重新访问时，都会把它设置为列表的结尾。
-
-##### 2.3 use
-
-用于为vue设置插件，它维护一个插件队列，判断是否已存在，如果未存在，执行插件，并且添加到插件队列中。
-
-#### 3. platform：web、weex平台
-
-#### 4. server：服务端渲染
-
-#### 5. sfc
-
-​	单文件组件处理，将.vue文件的template、script、style拆分
-
-#### 6. shared：工具、常量
-
-
+3）在使用keep-alive设置是否缓存页面时，可以使用include和exclude属性，依据的就是组件name属性
 
 1.1 生命周期
 
@@ -463,14 +383,4 @@ this.DestroyIncomeStatistics = false;
         });
 //这样的话就会完成强制刷新
 ```
-
-## 三、小细节问题
-
-#### 1. export default中定义name属性的作用
-
-答：1）允许组件末班递归地调用自身（使用`Vue.component()`注册全局组件时，全局id自动为组件name）
-
-2）方便在vue.js官方提供的调试工具vue-devtools中定位组件，进行调试
-
-3）在使用keep-alive设置是否缓存页面时，可以使用include和exclude属性，依据的就是组件name属性
 
